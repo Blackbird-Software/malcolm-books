@@ -1,0 +1,8 @@
+db:
+  host: 'db'
+  username: 'user'
+  password: 'hashers'
+  synchronize: true
+
+jwt:
+  secret: 'secret'

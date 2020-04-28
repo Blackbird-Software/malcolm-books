@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  web:
+    build: .
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - .:/opt/app
+      - /opt/app/node_modules
+    ports:
+      - 3001:3000
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'events'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'pass'
+      MYSQL_ROOT_PASSWORD: 'pass'
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:

@@ -1,0 +1,5 @@
+server:
+  origin: http://origin.com
+
+db:
+  synchronize: false
