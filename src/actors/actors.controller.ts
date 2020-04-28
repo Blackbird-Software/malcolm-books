@@ -27,7 +27,7 @@ export class ActorsController {
     }
 
     @Post()
-    createTask(
+    create(
         @Body('gender', GenderValidationPipe) gender: Gender,
         @Body() dto: CreateActorDto
     ): Promise<ActorInterface> {
@@ -36,7 +36,7 @@ export class ActorsController {
     }
 
     @Put('/:id')
-    updateTaskStatus(
+    update(
         @Param('id', ParseUUIDPipe) id: string,
         @Body('gender', GenderValidationPipe) gender: Gender,
         @Body() dto: UpdateActorDto

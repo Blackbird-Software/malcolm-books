@@ -25,12 +25,12 @@ export class MoviesController {
     }
 
     @Post()
-    createTask(@Body() dto: CreateMovieDto): Promise<MovieInterface> {
+    create(@Body() dto: CreateMovieDto): Promise<MovieInterface> {
         return this.moviesService.create(dto);
     }
 
     @Put('/:id')
-    updateTaskStatus(
+    update(
         @Param('id', ParseUUIDPipe) id: string,
         @Body() dto: UpdateMovieDto):
         Promise<MovieInterface> {

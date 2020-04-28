@@ -25,12 +25,12 @@ export class DirectorsController {
     }
 
     @Post()
-    createTask(@Body() dto: CreateDirectorDto): Promise<DirectorInterface> {
+    create(@Body() dto: CreateDirectorDto): Promise<DirectorInterface> {
         return this.directorsService.create(dto);
     }
 
     @Put('/:id')
-    updateTaskStatus(
+    update(
         @Param('id', ParseUUIDPipe) id: string,
         @Body() dto: UpdateDirectorDto):
         Promise<DirectorInterface> {

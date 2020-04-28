@@ -25,12 +25,12 @@ export class GenresController {
     }
 
     @Post()
-    createTask(@Body() dto: CreateGenreDto): Promise<GenreInterface> {
+    create(@Body() dto: CreateGenreDto): Promise<GenreInterface> {
         return this.genresService.create(dto);
     }
 
     @Put('/:id')
-    updateTaskStatus(
+    update(
         @Param('id', ParseUUIDPipe) id: string,
         @Body() dto: UpdateGenreDto):
         Promise<GenreInterface> {
