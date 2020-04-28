@@ -5,6 +5,7 @@ db:
   type: 'mysql'
   port: 3306
   database: 'events'
+  charset: 'UTF8_GENERAL_CI'
 
 jwt:
   expiresIn: 3600
