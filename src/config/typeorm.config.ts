@@ -12,7 +12,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   database: process.env.DB_NAME || dbConfig.database,
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   synchronize: process.env.TYPEORM_SYNC || dbConfig.synchronize,
-  extra: {
-    charset: 'utf8mb4_unicode_ci'
-  }
+  charset: 'utf8mb4_unicode_ci'
 };
