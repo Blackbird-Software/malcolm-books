@@ -9,5 +9,5 @@ export class ChangeActorsDto {
     @Type(() => Actor)
     @IsArray()
     @IsNotEmpty()
-    directors: Actor[];
+    readonly directors: Actor[];
 }

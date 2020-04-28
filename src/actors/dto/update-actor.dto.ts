@@ -6,15 +6,15 @@ export class UpdateActorDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    firstName: string;
+    readonly firstName: string;
 
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    lastName: string;
+    readonly lastName: string;
 
     @ApiProperty()
     @IsIn([Gender.MALE, Gender.FEMALE])
     @IsNotEmpty()
-    gender: Gender;
+    readonly gender: Gender;
 }

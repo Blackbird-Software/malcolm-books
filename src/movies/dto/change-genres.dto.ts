@@ -9,5 +9,5 @@ export class ChangeGenresDto {
     @Type(() => Genre)
     @IsArray()
     @IsNotEmpty()
-    genres: Genre[];
+    readonly genres: Genre[];
 }

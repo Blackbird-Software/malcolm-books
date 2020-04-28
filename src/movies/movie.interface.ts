@@ -3,11 +3,11 @@ import {ActorInterface} from "../actors/actor.interface";
 import {DirectorInterface} from "../directors/director.interface";
 
 export interface MovieInterface {
-    id: string;
-    title: string;
-    description?: string;
-    premiere: string;
-    genres?: GenreInterface[];
-    actors?: ActorInterface[];
-    directors?: DirectorInterface[];
+    readonly id: string;
+    readonly title: string;
+    readonly description?: string;
+    readonly premiere: string;
+    readonly genres?: GenreInterface[];
+    readonly actors?: ActorInterface[];
+    readonly directors?: DirectorInterface[];
 }

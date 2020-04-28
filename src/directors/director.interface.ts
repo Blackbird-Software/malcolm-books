@@ -1,5 +1,5 @@
 export interface DirectorInterface {
-    id: string;
-    firstName: string;
-    lastName: string;
+    readonly id: string;
+    readonly firstName: string;
+    readonly lastName: string;
 }

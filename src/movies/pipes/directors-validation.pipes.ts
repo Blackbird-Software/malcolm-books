@@ -10,7 +10,7 @@ export class DirectorsValidationPipes implements PipeTransform {
 
     async transform(ids: any, metadata: ArgumentMetadata) {
 
-        if(!Array.isArray(ids)) {
+        if (!Array.isArray(ids)) {
             throw new BadRequestException('Invalid arguments provided. ');
         }
 

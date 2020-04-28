@@ -1,4 +1,4 @@
 export interface JwtResponseInterface {
-    accessToken: string;
-    expiresAt: Date;
+    readonly accessToken: string;
+    readonly expiresAt: Date;
 }

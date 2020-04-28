@@ -5,10 +5,10 @@ export class CreateGenreDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    name: string;
+    readonly name: string;
 
     @ApiProperty()
     @IsString()
     @IsOptional()
-    description?: string;
+    readonly description?: string;
 }

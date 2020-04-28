@@ -1,10 +1,10 @@
 export interface UserInterface {
-    id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-    salt: string;
+    readonly id: string;
+    readonly email: string;
+    readonly firstName: string;
+    readonly lastName: string;
+    readonly password: string;
+    readonly salt: string;
 
     validatePassword(password: string): Promise<boolean>;
 }

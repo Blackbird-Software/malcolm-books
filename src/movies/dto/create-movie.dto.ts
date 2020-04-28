@@ -5,15 +5,15 @@ export class CreateMovieDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    title: string;
+    readonly title: string;
 
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    premiere: string;
+    readonly premiere: string;
 
     @ApiProperty()
     @IsString()
     @IsOptional()
-    description?: string;
+    readonly description?: string;
 }

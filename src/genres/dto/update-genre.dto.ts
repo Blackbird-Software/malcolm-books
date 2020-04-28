@@ -5,5 +5,5 @@ export class UpdateGenreDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    description: string;
+    readonly description: string;
 }

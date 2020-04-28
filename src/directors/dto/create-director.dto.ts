@@ -5,10 +5,10 @@ export class CreateDirectorDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    firstName: string;
+    readonly firstName: string;
 
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    lastName: string;
+    readonly lastName: string;
 }

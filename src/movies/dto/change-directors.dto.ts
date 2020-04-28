@@ -9,5 +9,5 @@ export class ChangeDirectorsDto {
     @Type(() => Director)
     @IsArray()
     @IsNotEmpty()
-    directors: Director[];
+    readonly directors: Director[];
 }

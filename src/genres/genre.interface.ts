@@ -1,5 +1,5 @@
 export interface GenreInterface {
-    id: string;
-    name: string;
-    description?: string;
+    readonly id: string;
+    readonly name: string;
+    readonly description?: string;
 }

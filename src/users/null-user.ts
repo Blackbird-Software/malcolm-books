@@ -1,13 +1,13 @@
 import {UserInterface} from "./user.interface";
 
-export class NullUser implements  UserInterface {
+export class NullUser implements UserInterface {
 
-    email: string;
-    firstName: string;
-    id: string;
-    lastName: string;
-    password: string;
-    salt: string;
+    readonly email: string;
+    readonly firstName: string;
+    readonly id: string;
+    readonly lastName: string;
+    readonly password: string;
+    readonly salt: string;
 
     validatePassword(password: string): Promise<boolean> {
         return Promise.resolve(false);
