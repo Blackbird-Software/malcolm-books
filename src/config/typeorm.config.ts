@@ -10,7 +10,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: process.env.DB_USERNAME || dbConfig.username,
   password: process.env.DB_PASSWORD || dbConfig.password,
   database: process.env.DB_NAME || dbConfig.database,
-  entities: [__dirname + '/../**/*.entity.{js,ts}'],
+  entities: [__dirname + '/../**/*.entity.ts'],
   synchronize: process.env.TYPEORM_SYNC || dbConfig.synchronize,
   charset: 'utf8mb4_unicode_ci'
 };
