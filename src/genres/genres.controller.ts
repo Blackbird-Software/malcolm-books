@@ -29,7 +29,8 @@ export class GenresController {
         return this.genresService.create(dto);
     }
 
-    @Put('/:id') updateTaskStatus(
+    @Put('/:id')
+    updateTaskStatus(
         @Param('id', ParseUUIDPipe) id: string,
         @Body() dto: UpdateGenreDto):
         Promise<GenreInterface> {

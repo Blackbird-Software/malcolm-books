@@ -7,16 +7,16 @@ import {UpdateDirectorDto} from "./dto/update-director.dto";
 
 @EntityRepository(Director)
 export class DirectorRepository extends Repository<Director> {
-    private logger = new Logger('GenreRepository');
+    private logger = new Logger('DirectorRepository');
 
     async createDirector(dto: CreateDirectorDto): Promise<DirectorInterface> {
         const {firstName, lastName} = dto;
-        const genre = new Director();
-        genre.firstName = firstName;
-        genre.lastName = lastName;
-        await genre.save();
+        const director = new Director();
+        director.firstName = firstName;
+        director.lastName = lastName;
+        await director.save();
 
-        return genre;
+        return director;
     }
 
     async updateDirector(id: string, dto: UpdateDirectorDto): Promise<DirectorInterface> {

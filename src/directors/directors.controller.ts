@@ -29,7 +29,8 @@ export class DirectorsController {
         return this.directorsService.create(dto);
     }
 
-    @Put('/:id') updateTaskStatus(
+    @Put('/:id')
+    updateTaskStatus(
         @Param('id', ParseUUIDPipe) id: string,
         @Body() dto: UpdateDirectorDto):
         Promise<DirectorInterface> {
