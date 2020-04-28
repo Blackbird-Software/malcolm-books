@@ -4,6 +4,9 @@ import {MovieRepository} from "./movie.repository";
 import {UpdateMovieDto} from "./dto/update-movie.dto";
 import {MovieInterface} from "./movie.interface";
 import {CreateMovieDto} from "./dto/create-movie.dto";
+import {GenreInterface} from "../genres/genre.interface";
+import {DirectorInterface} from "../directors/director.interface";
+import {ActorInterface} from "../actors/actor.interface";
 
 @Injectable()
 export class MoviesService {
@@ -19,6 +22,18 @@ export class MoviesService {
 
     async update(id: string, dto: UpdateMovieDto): Promise<MovieInterface> {
        return this.movieRepository.updateMovie(id, dto);
+    }
+
+    async changeGenres(id: string, genres: GenreInterface[]): Promise<MovieInterface> {
+        return this.movieRepository.changeGenres(id, genres);
+    }
+
+    async changeActors(id: string, actors: ActorInterface[]): Promise<MovieInterface> {
+        return this.movieRepository.changeActors(id, actors);
+    }
+
+    async changeDirectors(id: string, directors: DirectorInterface[]): Promise<MovieInterface> {
+        return this.movieRepository.changeDirectors(id, directors);
     }
 
     findAll(): Promise<MovieInterface[]> {

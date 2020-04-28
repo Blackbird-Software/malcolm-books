@@ -4,6 +4,9 @@ import {Movie} from "./movie.entity";
 import {CreateMovieDto} from "./dto/create-movie.dto";
 import {MovieInterface} from "./movie.interface";
 import {UpdateMovieDto} from "./dto/update-movie.dto";
+import {GenreInterface} from "../genres/genre.interface";
+import {ActorInterface} from "../actors/actor.interface";
+import {DirectorInterface} from "../directors/director.interface";
 
 @EntityRepository(Movie)
 export class MovieRepository extends Repository<Movie> {
@@ -30,11 +33,6 @@ export class MovieRepository extends Repository<Movie> {
 
     async updateMovie(id: string, dto: UpdateMovieDto): Promise<MovieInterface> {
         const movie = await this.findOne(id);
-
-        if (!movie) {
-            throw new NotFoundException('Movie does not exists. ');
-        }
-
         movie.title = dto.title;
         movie.description = dto.description;
         movie.premiere = dto.premiere;
@@ -42,6 +40,40 @@ export class MovieRepository extends Repository<Movie> {
         // movie.actors = dto.actors;
         // movie.directors = dto.directors;
         await movie.save();
+
+        return movie;
+    }
+
+    async changeGenres(id: string, genres: GenreInterface[]): Promise<MovieInterface> {
+        const movie = await this.getMovie(id);
+        movie.genres = genres;
+        await movie.save();
+
+        return movie;
+    }
+
+    async changeActors(id: string, actors: ActorInterface[]): Promise<MovieInterface> {
+        const movie = await this.getMovie(id);
+        movie.actors = actors;
+        await movie.save();
+
+        return movie;
+    }
+
+    async changeDirectors(id: string, directors: DirectorInterface[]): Promise<MovieInterface> {
+        const movie = await this.getMovie(id);
+        movie.directors = directors;
+        await movie.save();
+
+        return movie;
+    }
+
+    private async getMovie(id: string): Promise<Movie> {
+        const movie = await this.findOne(id);
+
+        if (!movie) {
+            throw new NotFoundException('Movie does not exists. ');
+        }
 
         return movie;
     }

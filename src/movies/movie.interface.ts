@@ -7,7 +7,7 @@ export interface MovieInterface {
     title: string;
     description?: string;
     premiere: string;
-    // genres?: GenreInterface[];
-    // actors?: ActorInterface[];
-    // directors?: DirectorInterface[];
+    genres?: GenreInterface[];
+    actors?: ActorInterface[];
+    directors?: DirectorInterface[];
 }

@@ -4,7 +4,7 @@ import {
     Get, HttpCode,
     Logger,
     Param,
-    ParseUUIDPipe,
+    ParseUUIDPipe, Patch,
     Post, Put,
     UseGuards,
 } from "@nestjs/common";
@@ -14,6 +14,15 @@ import {MoviesService} from "./movies.service";
 import {MovieInterface} from "./movie.interface";
 import {CreateMovieDto} from "./dto/create-movie.dto";
 import {UpdateMovieDto} from "./dto/update-movie.dto";
+import {GenresValidationPipes} from "./pipes/genres-validation.pipes";
+import {ChangeGenresDto} from "./dto/change-genres.dto";
+import {DirectorsValidationPipes} from "./pipes/directors-validation.pipes";
+import {ChangeDirectorsDto} from "./dto/change-directors.dto";
+import {GenreInterface} from "../genres/genre.interface";
+import {DirectorInterface} from "../directors/director.interface";
+import {ActorsValidationPipes} from "./pipes/actors-validation.pipes";
+import {ActorInterface} from "../actors/actor.interface";
+import {ChangeActorsDto} from "./dto/change-actors.dto";
 
 @ApiTags('movies')
 @Controller('movies')
@@ -32,9 +41,36 @@ export class MoviesController {
     @Put('/:id')
     update(
         @Param('id', ParseUUIDPipe) id: string,
-        @Body() dto: UpdateMovieDto):
-        Promise<MovieInterface> {
+        @Body() dto: UpdateMovieDto
+    ): Promise<MovieInterface> {
         return this.moviesService.update(id, dto);
+    }
+
+    @Patch('/:id/genres')
+    changeGenres(
+        @Param('id', ParseUUIDPipe) id: string,
+        @Body('genres', GenresValidationPipes) genres: GenreInterface[],
+        @Body() dto: ChangeGenresDto
+    ): Promise<MovieInterface> {
+        return this.moviesService.changeGenres(id, genres);
+    }
+
+    @Patch('/:id/directors')
+    changeDirectors(
+        @Param('id', ParseUUIDPipe) id: string,
+        @Body('directors', DirectorsValidationPipes) directors: DirectorInterface[],
+        @Body() dto: ChangeDirectorsDto
+    ): Promise<MovieInterface> {
+        return this.moviesService.changeDirectors(id, directors);
+    }
+
+    @Patch('/:id/actors')
+    changeActors(
+        @Param('id', ParseUUIDPipe) id: string,
+        @Body('actors', ActorsValidationPipes) actors: ActorInterface[],
+        @Body() dto: ChangeActorsDto
+    ): Promise<MovieInterface> {
+        return this.moviesService.changeActors(id, actors);
     }
 
     @Get()

@@ -12,6 +12,9 @@ import {Director} from "../directors/director.entity";
 import {Actor} from "../actors/actor.entity";
 import {MovieInterface} from "./movie.interface";
 import {Genre} from "../genres/genre.entity";
+import {GenreInterface} from "../genres/genre.interface";
+import {DirectorInterface} from "../directors/director.interface";
+import {ActorInterface} from "../actors/actor.interface";
 
 @Entity('movies')
 export class Movie extends BaseEntity implements MovieInterface {
@@ -28,17 +31,17 @@ export class Movie extends BaseEntity implements MovieInterface {
     @Column()
     premiere: string;
 
-    // @ManyToMany(type => Genre)
-    // @JoinTable()
-    // genres?: Genre[];
-    //
-    // @ManyToMany(type => Director)
-    // @JoinTable()
-    // directors?: Director[];
-    //
-    // @ManyToMany(type => Actor)
-    // @JoinTable()
-    // actors?: Actor[];
+    @ManyToMany(type => Genre, {eager: true})
+    @JoinTable()
+    genres?: GenreInterface[];
+
+    @ManyToMany(type => Director, {eager: true})
+    @JoinTable()
+    directors?: DirectorInterface[];
+
+    @ManyToMany(type => Actor, {eager: true})
+    @JoinTable()
+    actors?: ActorInterface[];
 
     @CreateDateColumn()
     createdAt: Date;
