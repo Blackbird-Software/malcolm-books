@@ -29,7 +29,7 @@ export class DirectorsService {
         const found = await this.directorRepository.findOne(id);
 
         if (!found) {
-            throw new NotFoundException('Genre not found. ');
+            throw new NotFoundException('Director not found. ');
         }
 
         return found;
