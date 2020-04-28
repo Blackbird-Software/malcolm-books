@@ -19,7 +19,7 @@ import {UpdateGenreDto} from "./dto/update-genre.dto";
 @Controller('genres')
 @UseGuards(AuthGuard())
 export class GenresController {
-    private logger = new Logger('TasksController');
+    private logger = new Logger('GenresController');
 
     constructor(private genresService: GenresService) {
     }
