@@ -15,12 +15,13 @@ services:
       - db
   db:
     image: mysql:5.7
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     environment:
-      MYSQL_DATABASE: 'events'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'pass'
-      MYSQL_ROOT_PASSWORD: 'pass'
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
       - 3306:3306
     expose:

@@ -1,7 +1,7 @@
 db:
   host: 'db'
   username: 'user'
-  password: 'hashers'
+  password: 'pass'
   synchronize: true
 
 jwt:
