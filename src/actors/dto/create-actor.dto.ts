@@ -13,7 +13,7 @@ export class CreateActorDto {
     @IsNotEmpty()
     readonly lastName: string;
 
-    @ApiProperty()
+    @ApiProperty({ enum: [Gender.FEMALE, Gender.MALE]})
     @IsIn([Gender.MALE, Gender.FEMALE])
     @IsNotEmpty()
     readonly gender: Gender;

@@ -10,11 +10,12 @@ import {
 } from "@nestjs/common";
 import {AuthGuard} from "@nestjs/passport";
 import {CreateDirectorDto} from "./dto/create-director.dto";
-import {ApiTags} from "@nestjs/swagger";
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 import {DirectorsService} from "./directors.service";
 import {UpdateDirectorDto} from "./dto/update-director.dto";
 import {DirectorInterface} from "./director.interface";
 
+@ApiBearerAuth()
 @ApiTags('directors')
 @Controller('directors')
 @UseGuards(AuthGuard())

@@ -12,9 +12,10 @@ import {AuthGuard} from "@nestjs/passport";
 import {GenresService} from "./genres.service";
 import {GenreInterface} from "./genre.interface";
 import {CreateGenreDto} from "./dto/create-genre.dto";
-import {ApiTags} from "@nestjs/swagger";
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 import {UpdateGenreDto} from "./dto/update-genre.dto";
 
+@ApiBearerAuth()
 @ApiTags('genres')
 @Controller('genres')
 @UseGuards(AuthGuard())

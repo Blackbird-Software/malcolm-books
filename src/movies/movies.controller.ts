@@ -9,7 +9,7 @@ import {
     UseGuards,
 } from "@nestjs/common";
 import {AuthGuard} from "@nestjs/passport";
-import {ApiTags} from "@nestjs/swagger";
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 import {MoviesService} from "./movies.service";
 import {MovieInterface} from "./movie.interface";
 import {CreateMovieDto} from "./dto/create-movie.dto";
@@ -24,6 +24,7 @@ import {ActorsValidationPipes} from "./pipes/actors-validation.pipes";
 import {ActorInterface} from "../actors/actor.interface";
 import {ChangeActorsDto} from "./dto/change-actors.dto";
 
+@ApiBearerAuth()
 @ApiTags('movies')
 @Controller('movies')
 @UseGuards(AuthGuard())
