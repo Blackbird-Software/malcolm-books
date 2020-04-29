@@ -4,8 +4,6 @@ services:
   web:
     build: .
     restart: always
-    env_file:
-      - .env
     volumes:
       - .:/opt/app
       - /opt/app/node_modules

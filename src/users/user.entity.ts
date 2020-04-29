@@ -1,4 +1,12 @@
-import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany} from 'typeorm';
+import {
+    BaseEntity,
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    Unique,
+    CreateDateColumn,
+    UpdateDateColumn
+} from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import {Exclude} from 'class-transformer';
 import {UserInterface} from './user.interface';
@@ -26,6 +34,12 @@ export class User extends BaseEntity implements UserInterface {
     @Exclude()
     @Column()
     salt: string;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
 
     @Exclude()
     fullName = () => `${this.firstName} ${this.lastName}`

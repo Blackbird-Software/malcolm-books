@@ -1,8 +1,9 @@
 db:
+  type: 'mysql'
   host: 'db'
   username: 'user'
   password: 'pass'
-  synchronize: true
+  synchronize: false
 
 jwt:
   secret: 'secret'
