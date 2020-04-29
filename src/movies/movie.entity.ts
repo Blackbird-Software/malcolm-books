@@ -26,7 +26,7 @@ export class Movie extends BaseEntity implements MovieInterface {
     @Column()
     title: string;
 
-    @Column({nullable: true})
+    @Column({type: 'text', nullable: true})
     description?: string;
 
     @Index()

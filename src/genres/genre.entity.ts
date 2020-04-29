@@ -13,7 +13,7 @@ export class Genre extends BaseEntity implements GenreInterface {
     @Column()
     name: string;
 
-    @Column({nullable: true})
+    @Column({type: 'text', nullable: true})
     description?: string;
 
     @ManyToMany(type => Movie, movie => movie.genres, {
