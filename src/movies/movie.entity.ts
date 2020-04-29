@@ -6,7 +6,7 @@ import {
     CreateDateColumn,
     ManyToMany,
     JoinTable,
-    UpdateDateColumn,
+    UpdateDateColumn, Index,
 } from 'typeorm';
 import {Director} from '../directors/director.entity';
 import {Actor} from '../actors/actor.entity';
@@ -22,12 +22,14 @@ export class Movie extends BaseEntity implements MovieInterface {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    @Index()
     @Column()
     title: string;
 
     @Column({nullable: true})
     description?: string;
 
+    @Index()
     @Column()
     premiere: string;
 

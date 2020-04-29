@@ -5,7 +5,7 @@ import {
     Column,
     Unique,
     CreateDateColumn,
-    UpdateDateColumn,
+    UpdateDateColumn, Index,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import {Exclude} from 'class-transformer';
@@ -18,6 +18,7 @@ export class User extends BaseEntity implements UserInterface {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    @Index({unique: true})
     @Column()
     email: string;
 
