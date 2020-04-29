@@ -6,8 +6,8 @@ import { LoginDto } from './dto/login.dto';
 import { JwtPayloadInterface } from './jwt/jwt-payload.interface';
 
 import * as config from 'config';
-import {JwtResponse} from "./jwt/jwt-response";
-import {JwtResponseInterface} from "./jwt/jwt-response.interface";
+import {JwtResponse} from './jwt/jwt-response';
+import {JwtResponseInterface} from './jwt/jwt-response.interface';
 
 const jwtConfig = config.get('jwt');
 

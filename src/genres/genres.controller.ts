@@ -7,13 +7,13 @@ import {
     ParseUUIDPipe,
     Post, Put,
     UseGuards,
-} from "@nestjs/common";
-import {AuthGuard} from "@nestjs/passport";
-import {GenresService} from "./genres.service";
-import {GenreInterface} from "./genre.interface";
-import {CreateGenreDto} from "./dto/create-genre.dto";
-import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
-import {UpdateGenreDto} from "./dto/update-genre.dto";
+} from '@nestjs/common';
+import {AuthGuard} from '@nestjs/passport';
+import {GenresService} from './genres.service';
+import {GenreInterface} from './genre.interface';
+import {CreateGenreDto} from './dto/create-genre.dto';
+import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
+import {UpdateGenreDto} from './dto/update-genre.dto';
 
 @ApiBearerAuth()
 @ApiTags('genres')

@@ -1,7 +1,7 @@
 import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany} from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import {Exclude} from "class-transformer";
-import {UserInterface} from "./user.interface";
+import {Exclude} from 'class-transformer';
+import {UserInterface} from './user.interface';
 
 @Entity('users')
 @Unique(['email'])
@@ -28,7 +28,7 @@ export class User extends BaseEntity implements UserInterface {
     salt: string;
 
     @Exclude()
-    fullName = () => `${this.firstName} ${this.lastName}`;
+    fullName = () => `${this.firstName} ${this.lastName}`
 
     async validatePassword(password: string): Promise<boolean> {
         const hash = await bcrypt.hash(password, this.salt);

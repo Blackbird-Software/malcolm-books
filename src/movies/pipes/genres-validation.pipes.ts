@@ -1,6 +1,6 @@
 import {ArgumentMetadata, BadRequestException, Injectable, PipeTransform} from '@nestjs/common';
-import {GenreInterface} from "../../genres/genre.interface";
-import {GenresService} from "../../genres/genres.service";
+import {GenreInterface} from '../../genres/genre.interface';
+import {GenresService} from '../../genres/genres.service';
 
 @Injectable()
 export class GenresValidationPipes implements PipeTransform {

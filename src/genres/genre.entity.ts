@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, Unique, BaseEntity} from 'typeorm';
-import {GenreInterface} from "./genre.interface";
+import {GenreInterface} from './genre.interface';
 
 @Entity('genres')
 @Unique(['name'])

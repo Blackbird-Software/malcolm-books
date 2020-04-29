@@ -1,12 +1,12 @@
-import {EntityRepository, Repository} from "typeorm";
-import {ConflictException, Logger, NotFoundException} from "@nestjs/common";
-import {Movie} from "./movie.entity";
-import {CreateMovieDto} from "./dto/create-movie.dto";
-import {MovieInterface} from "./movie.interface";
-import {UpdateMovieDto} from "./dto/update-movie.dto";
-import {GenreInterface} from "../genres/genre.interface";
-import {ActorInterface} from "../actors/actor.interface";
-import {DirectorInterface} from "../directors/director.interface";
+import {EntityRepository, Repository} from 'typeorm';
+import {ConflictException, Logger, NotFoundException} from '@nestjs/common';
+import {Movie} from './movie.entity';
+import {CreateMovieDto} from './dto/create-movie.dto';
+import {MovieInterface} from './movie.interface';
+import {UpdateMovieDto} from './dto/update-movie.dto';
+import {GenreInterface} from '../genres/genre.interface';
+import {ActorInterface} from '../actors/actor.interface';
+import {DirectorInterface} from '../directors/director.interface';
 
 @EntityRepository(Movie)
 export class MovieRepository extends Repository<Movie> {

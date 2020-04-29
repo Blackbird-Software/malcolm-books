@@ -7,11 +7,11 @@ import {
 } from '@nestjs/common';
 import {LoginDto} from './dto/login.dto';
 import {AuthService} from './auth.service';
-import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
-import {AuthGuard} from "@nestjs/passport";
-import {UserInterface} from "../users/user.interface";
-import {GetUser} from "./decorators/get-user.decorator";
-import {JwtResponseInterface} from "./jwt/jwt-response.interface";
+import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
+import {AuthGuard} from '@nestjs/passport';
+import {UserInterface} from '../users/user.interface';
+import {GetUser} from './decorators/get-user.decorator';
+import {JwtResponseInterface} from './jwt/jwt-response.interface';
 
 @ApiTags('auth')
 @Controller('auth')

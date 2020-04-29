@@ -1,9 +1,9 @@
-import {Injectable, NotFoundException} from "@nestjs/common";
-import {InjectRepository} from "@nestjs/typeorm";
-import {CreateActorDto} from "./dto/create-actor.dto";
-import {ActorRepository} from "./actor.repository";
-import {ActorInterface} from "./actor.interface";
-import {UpdateActorDto} from "./dto/update-actor.dto";
+import {Injectable, NotFoundException} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {CreateActorDto} from './dto/create-actor.dto';
+import {ActorRepository} from './actor.repository';
+import {ActorInterface} from './actor.interface';
+import {UpdateActorDto} from './dto/update-actor.dto';
 
 @Injectable()
 export class ActorsService {

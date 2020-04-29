@@ -1,9 +1,9 @@
-import {EntityRepository, Repository} from "typeorm";
-import {Genre} from "./genre.entity";
-import {ConflictException, Logger, NotFoundException} from "@nestjs/common";
-import {CreateGenreDto} from "./dto/create-genre.dto";
-import {GenreInterface} from "./genre.interface";
-import {UpdateGenreDto} from "./dto/update-genre.dto";
+import {EntityRepository, Repository} from 'typeorm';
+import {Genre} from './genre.entity';
+import {ConflictException, Logger, NotFoundException} from '@nestjs/common';
+import {CreateGenreDto} from './dto/create-genre.dto';
+import {GenreInterface} from './genre.interface';
+import {UpdateGenreDto} from './dto/update-genre.dto';
 
 @EntityRepository(Genre)
 export class GenreRepository extends Repository<Genre> {

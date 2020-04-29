@@ -7,9 +7,9 @@ import {
     HttpStatus,
 } from '@nestjs/common';
 import {Response} from 'express';
-import {ApiTags} from "@nestjs/swagger";
-import {UsersService} from "./users.service";
-import {RegisterUserDto} from "./dto/register-user.dto";
+import {ApiTags} from '@nestjs/swagger';
+import {UsersService} from './users.service';
+import {RegisterUserDto} from './dto/register-user.dto';
 
 @ApiTags('users')
 @Controller('users')

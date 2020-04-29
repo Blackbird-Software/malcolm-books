@@ -1,4 +1,4 @@
-import {Gender} from "../common/gender.enum";
+import {Gender} from '../common/gender.enum';
 
 export interface ActorInterface {
     readonly id: string;

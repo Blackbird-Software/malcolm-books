@@ -1,9 +1,9 @@
-import {EntityRepository, Repository} from "typeorm";
-import {Logger, NotFoundException} from "@nestjs/common";
-import {CreateActorDto} from "./dto/create-actor.dto";
-import {ActorInterface} from "./actor.interface";
-import {UpdateActorDto} from "./dto/update-actor.dto";
-import {Actor} from "./actor.entity";
+import {EntityRepository, Repository} from 'typeorm';
+import {Logger, NotFoundException} from '@nestjs/common';
+import {CreateActorDto} from './dto/create-actor.dto';
+import {ActorInterface} from './actor.interface';
+import {UpdateActorDto} from './dto/update-actor.dto';
+import {Actor} from './actor.entity';
 
 @EntityRepository(Actor)
 export class ActorRepository extends Repository<Actor> {

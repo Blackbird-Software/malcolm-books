@@ -1,5 +1,5 @@
 import {PipeTransform, BadRequestException, ArgumentMetadata, Injectable} from '@nestjs/common';
-import {Gender} from "../gender.enum";
+import {Gender} from '../gender.enum';
 
 @Injectable()
 export class GenderValidationPipe implements PipeTransform {
@@ -18,7 +18,7 @@ export class GenderValidationPipe implements PipeTransform {
         return value;
     }
 
-    private isValid(gender: any): Boolean {
+    private isValid(gender: any): boolean {
         return this.allowedOptions.indexOf(gender) !== -1;
     }
 }

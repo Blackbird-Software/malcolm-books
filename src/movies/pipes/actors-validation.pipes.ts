@@ -1,6 +1,6 @@
 import {ArgumentMetadata, BadRequestException, Injectable, PipeTransform} from '@nestjs/common';
-import {ActorInterface} from "../../actors/actor.interface";
-import {ActorsService} from "../../actors/actors.service";
+import {ActorInterface} from '../../actors/actor.interface';
+import {ActorsService} from '../../actors/actors.service';
 
 @Injectable()
 export class ActorsValidationPipes implements PipeTransform {

@@ -1,12 +1,12 @@
-import {Injectable, NotFoundException} from "@nestjs/common";
-import {InjectRepository} from "@nestjs/typeorm";
-import {MovieRepository} from "./movie.repository";
-import {UpdateMovieDto} from "./dto/update-movie.dto";
-import {MovieInterface} from "./movie.interface";
-import {CreateMovieDto} from "./dto/create-movie.dto";
-import {GenreInterface} from "../genres/genre.interface";
-import {DirectorInterface} from "../directors/director.interface";
-import {ActorInterface} from "../actors/actor.interface";
+import {Injectable, NotFoundException} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {MovieRepository} from './movie.repository';
+import {UpdateMovieDto} from './dto/update-movie.dto';
+import {MovieInterface} from './movie.interface';
+import {CreateMovieDto} from './dto/create-movie.dto';
+import {GenreInterface} from '../genres/genre.interface';
+import {DirectorInterface} from '../directors/director.interface';
+import {ActorInterface} from '../actors/actor.interface';
 
 @Injectable()
 export class MoviesService {
@@ -43,7 +43,7 @@ export class MoviesService {
     async findById(id: string): Promise<MovieInterface> {
         const found = await this.movieRepository.findOne(id);
 
-        if(!found) {
+        if (!found) {
             throw new NotFoundException('Movie not found. ');
         }
 

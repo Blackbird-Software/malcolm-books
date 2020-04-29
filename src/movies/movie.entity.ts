@@ -6,15 +6,15 @@ import {
     CreateDateColumn,
     ManyToMany,
     JoinTable,
-    UpdateDateColumn
+    UpdateDateColumn,
 } from 'typeorm';
-import {Director} from "../directors/director.entity";
-import {Actor} from "../actors/actor.entity";
-import {MovieInterface} from "./movie.interface";
-import {Genre} from "../genres/genre.entity";
-import {GenreInterface} from "../genres/genre.interface";
-import {DirectorInterface} from "../directors/director.interface";
-import {ActorInterface} from "../actors/actor.interface";
+import {Director} from '../directors/director.entity';
+import {Actor} from '../actors/actor.entity';
+import {MovieInterface} from './movie.interface';
+import {Genre} from '../genres/genre.entity';
+import {GenreInterface} from '../genres/genre.interface';
+import {DirectorInterface} from '../directors/director.interface';
+import {ActorInterface} from '../actors/actor.interface';
 
 @Entity('movies')
 export class Movie extends BaseEntity implements MovieInterface {

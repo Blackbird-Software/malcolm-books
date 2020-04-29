@@ -1,9 +1,9 @@
-import {Injectable, NotFoundException} from "@nestjs/common";
-import {InjectRepository} from "@nestjs/typeorm";
-import {CreateDirectorDto} from "./dto/create-director.dto";
-import {DirectorRepository} from "./director.repository";
-import {DirectorInterface} from "./director.interface";
-import {UpdateDirectorDto} from "./dto/update-director.dto";
+import {Injectable, NotFoundException} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {CreateDirectorDto} from './dto/create-director.dto';
+import {DirectorRepository} from './director.repository';
+import {DirectorInterface} from './director.interface';
+import {UpdateDirectorDto} from './dto/update-director.dto';
 
 @Injectable()
 export class DirectorsService {

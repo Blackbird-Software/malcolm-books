@@ -1,4 +1,4 @@
-import {UserInterface} from "./user.interface";
+import {UserInterface} from './user.interface';
 
 export class NullUser implements UserInterface {
 

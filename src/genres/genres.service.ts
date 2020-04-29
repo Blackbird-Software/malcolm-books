@@ -1,9 +1,9 @@
-import {Injectable, NotFoundException} from "@nestjs/common";
-import {InjectRepository} from "@nestjs/typeorm";
-import {CreateGenreDto} from "./dto/create-genre.dto";
-import {GenreInterface} from "./genre.interface";
-import {GenreRepository} from "./genre.repository";
-import {UpdateGenreDto} from "./dto/update-genre.dto";
+import {Injectable, NotFoundException} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {CreateGenreDto} from './dto/create-genre.dto';
+import {GenreInterface} from './genre.interface';
+import {GenreRepository} from './genre.repository';
+import {UpdateGenreDto} from './dto/update-genre.dto';
 
 @Injectable()
 export class GenresService {
@@ -28,7 +28,7 @@ export class GenresService {
     async findById(id: string): Promise<GenreInterface> {
         const found = await this.genreRepository.findOne(id);
 
-        if(!found) {
+        if (!found) {
             throw new NotFoundException('Genre not found. ');
         }
 

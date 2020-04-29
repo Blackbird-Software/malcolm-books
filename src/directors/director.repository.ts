@@ -1,9 +1,9 @@
-import {EntityRepository, Repository} from "typeorm";
-import {Logger, NotFoundException} from "@nestjs/common";
-import {CreateDirectorDto} from "./dto/create-director.dto";
-import {Director} from "./director.entity";
-import {DirectorInterface} from "./director.interface";
-import {UpdateDirectorDto} from "./dto/update-director.dto";
+import {EntityRepository, Repository} from 'typeorm';
+import {Logger, NotFoundException} from '@nestjs/common';
+import {CreateDirectorDto} from './dto/create-director.dto';
+import {Director} from './director.entity';
+import {DirectorInterface} from './director.interface';
+import {UpdateDirectorDto} from './dto/update-director.dto';
 
 @EntityRepository(Director)
 export class DirectorRepository extends Repository<Director> {

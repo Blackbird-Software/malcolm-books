@@ -1,6 +1,6 @@
 import {IsString, IsNotEmpty, IsIn} from 'class-validator';
 import {ApiProperty} from '@nestjs/swagger';
-import {Gender} from "../../common/gender.enum";
+import {Gender} from '../../common/gender.enum';
 
 export class UpdateActorDto {
     @ApiProperty()

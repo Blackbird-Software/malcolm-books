@@ -1,6 +1,6 @@
 import {ArgumentMetadata, BadRequestException, Injectable, PipeTransform} from '@nestjs/common';
-import {DirectorsService} from "../../directors/directors.service";
-import {DirectorInterface} from "../../directors/director.interface";
+import {DirectorsService} from '../../directors/directors.service';
+import {DirectorInterface} from '../../directors/director.interface';
 
 @Injectable()
 export class DirectorsValidationPipes implements PipeTransform {

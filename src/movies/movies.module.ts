@@ -1,16 +1,16 @@
 import {Module} from '@nestjs/common';
 import {AuthModule} from '../auth/auth.module';
-import {TypeOrmModule} from "@nestjs/typeorm";
-import {MovieRepository} from "./movie.repository";
-import {MoviesController} from "./movies.controller";
-import {MoviesService} from "./movies.service";
-import {GenresService} from "../genres/genres.service";
-import {GenresModule} from "../genres/genres.module";
-import {GenreRepository} from "../genres/genre.repository";
-import {DirectorRepository} from "../directors/director.repository";
-import {ActorRepository} from "../actors/actor.repository";
-import {DirectorsService} from "../directors/directors.service";
-import {ActorsService} from "../actors/actors.service";
+import {TypeOrmModule} from '@nestjs/typeorm';
+import {MovieRepository} from './movie.repository';
+import {MoviesController} from './movies.controller';
+import {MoviesService} from './movies.service';
+import {GenresService} from '../genres/genres.service';
+import {GenresModule} from '../genres/genres.module';
+import {GenreRepository} from '../genres/genre.repository';
+import {DirectorRepository} from '../directors/director.repository';
+import {ActorRepository} from '../actors/actor.repository';
+import {DirectorsService} from '../directors/directors.service';
+import {ActorsService} from '../actors/actors.service';
 
 // possibly get rid of some dependencies
 @Module({
@@ -22,7 +22,7 @@ import {ActorsService} from "../actors/actors.service";
         AuthModule,
         GenresModule,
         DirectorRepository,
-        ActorRepository
+        ActorRepository,
     ],
     controllers: [MoviesController],
     providers: [MoviesService, GenresService, DirectorsService, ActorsService],
