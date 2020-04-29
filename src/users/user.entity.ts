@@ -5,7 +5,7 @@ import {
     Column,
     Unique,
     CreateDateColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import {Exclude} from 'class-transformer';

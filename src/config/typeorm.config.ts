@@ -1,5 +1,5 @@
 import * as configBag from 'config';
-import {ConnectionOptions} from "typeorm";
+import {ConnectionOptions} from 'typeorm';
 
 const dbConfig = configBag.get('db');
 
@@ -11,7 +11,7 @@ const config: ConnectionOptions = {
     password: process.env.DB_PASSWORD || dbConfig.password,
     database: process.env.DB_NAME || dbConfig.database,
     entities: [
-        __dirname + '/../**/*.entity.ts'
+        __dirname + '/../**/*.entity.ts',
     ],
     synchronize: process.env.TYPEORM_SYNC || dbConfig.synchronize,
     charset: 'utf8mb4_unicode_ci',
