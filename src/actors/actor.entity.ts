@@ -1,8 +1,8 @@
 import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, Index, ManyToMany} from 'typeorm';
 import {ActorInterface} from './actor.interface';
 import {Gender} from '../common/gender.enum';
-import {Movie} from "../movies/movie.entity";
-import {MovieInterface} from "../movies/movie.interface";
+import {Movie} from '../movies/movie.entity';
+import {MovieInterface} from '../movies/movie.interface';
 
 @Entity('actors')
 export class Actor extends BaseEntity implements ActorInterface {
@@ -18,13 +18,13 @@ export class Actor extends BaseEntity implements ActorInterface {
 
     @Index()
     @Column({
-        type: "enum",
+        type: 'enum',
         enum: Gender,
     })
     gender: Gender;
 
     @ManyToMany(type => Movie, movie => movie.actors, {
-        cascade: true
+        cascade: true,
     })
     movies?: MovieInterface[];
 }

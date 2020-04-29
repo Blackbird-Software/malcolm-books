@@ -21,7 +21,7 @@ export class GenresService {
        return this.genreRepository.updateGenre(id, dto);
     }
 
-    findAll(): Promise<GenreInterface[]> {
+    async findAll(): Promise<GenreInterface[]> {
         return this.genreRepository.find();
     }
 

@@ -13,12 +13,13 @@ const jwtConfig = config.get('jwt');
 
 @Injectable()
 export class AuthService {
-  private logger = new Logger('AuthService');
+
+  private readonly logger = new Logger('AuthService');
 
   constructor(
     @InjectRepository(UserRepository)
-    private userRepository: UserRepository,
-    private jwtService: JwtService,
+    private readonly userRepository: UserRepository,
+    private readonly jwtService: JwtService,
   ) {}
 
   async login(dto: LoginDto): Promise<JwtResponseInterface> {

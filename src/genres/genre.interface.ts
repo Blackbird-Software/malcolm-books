@@ -1,4 +1,4 @@
-import {MovieInterface} from "../movies/movie.interface";
+import {MovieInterface} from '../movies/movie.interface';
 
 export interface GenreInterface {
     readonly id: string;

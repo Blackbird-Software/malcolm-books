@@ -10,9 +10,8 @@ export class UsersService {
 
     constructor(
         @InjectRepository(UserRepository)
-        private userRepository: UserRepository,
-    ) {
-    }
+        private readonly userRepository: UserRepository,
+    ) {}
 
     async register(dto: RegisterUserDto): Promise<UserInterface> {
         return this.userRepository.register(dto);

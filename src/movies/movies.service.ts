@@ -7,14 +7,15 @@ import {CreateMovieDto} from './dto/create-movie.dto';
 import {GenreInterface} from '../genres/genre.interface';
 import {DirectorInterface} from '../directors/director.interface';
 import {ActorInterface} from '../actors/actor.interface';
+import {GetMoviesFilterDto} from './dto/get-movies-filter.dto';
 
 @Injectable()
 export class MoviesService {
+
     constructor(
         @InjectRepository(MovieRepository)
-        private movieRepository: MovieRepository,
-    ) {
-    }
+        private readonly movieRepository: MovieRepository,
+    ) {}
 
     async create(dto: CreateMovieDto): Promise<MovieInterface> {
         return this.movieRepository.createMovie(dto);
@@ -36,8 +37,12 @@ export class MoviesService {
         return this.movieRepository.changeDirectors(id, directors);
     }
 
-    findAll(): Promise<MovieInterface[]> {
+    async findAll(): Promise<MovieInterface[]> {
         return this.movieRepository.find();
+    }
+
+    async findBy(filter: GetMoviesFilterDto): Promise<MovieInterface[]> {
+        return this.movieRepository.findBy(filter);
     }
 
     async findById(id: string): Promise<MovieInterface> {

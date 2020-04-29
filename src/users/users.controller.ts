@@ -14,10 +14,10 @@ import {RegisterUserDto} from './dto/register-user.dto';
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
+
     constructor(
-        private usersService: UsersService,
-    ) {
-    }
+        private readonly usersService: UsersService,
+    ) {}
 
     @Post()
     async register(@Body(ValidationPipe) dto: RegisterUserDto, @Res() res: Response) {

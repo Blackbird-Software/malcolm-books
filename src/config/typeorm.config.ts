@@ -15,11 +15,9 @@ const config: ConnectionOptions = {
     ],
     synchronize: process.env.TYPEORM_SYNC || dbConfig.synchronize,
     charset: 'utf8mb4_unicode_ci',
-
     migrationsRun: false,
     logging: true,
     logger: 'file',
-
     migrations: [__dirname + '/../migrations/*.ts'],
     cli: {
         migrationsDir: 'src/migrations',

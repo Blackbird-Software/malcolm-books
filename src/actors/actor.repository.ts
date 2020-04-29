@@ -7,7 +7,8 @@ import {Actor} from './actor.entity';
 
 @EntityRepository(Actor)
 export class ActorRepository extends Repository<Actor> {
-    private logger = new Logger('ActorRepository');
+
+    private readonly logger = new Logger('ActorRepository');
 
     async createActor(dto: CreateActorDto): Promise<ActorInterface> {
         const {firstName, lastName, gender} = dto;

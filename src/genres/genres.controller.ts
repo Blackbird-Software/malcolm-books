@@ -20,10 +20,9 @@ import {UpdateGenreDto} from './dto/update-genre.dto';
 @Controller('genres')
 @UseGuards(AuthGuard())
 export class GenresController {
-    private logger = new Logger('GenresController');
 
-    constructor(private genresService: GenresService) {
-    }
+    private readonly logger = new Logger('GenresController');
+    constructor(private readonly genresService: GenresService) {}
 
     @Post()
     create(@Body() dto: CreateGenreDto): Promise<GenreInterface> {

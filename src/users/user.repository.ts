@@ -13,7 +13,7 @@ import {NullUser} from './null-user';
 export class UserRepository extends Repository<UserInterface> {
 
     constructor(
-        private passwordHasher: PasswordHasherInterface,
+        private readonly passwordHasher: PasswordHasherInterface,
     ) {
         super();
         this.passwordHasher = new PasswordHasher();

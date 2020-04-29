@@ -33,7 +33,7 @@ export class Movie extends BaseEntity implements MovieInterface {
     @Column()
     premiere: string;
 
-    @ManyToMany(type => Genre,genre => genre.movies, {eager: true})
+    @ManyToMany(type => Genre, genre => genre.movies, {eager: true})
     @JoinTable({name: 'movie_has_genres'})
     genres?: GenreInterface[];
 
@@ -41,7 +41,7 @@ export class Movie extends BaseEntity implements MovieInterface {
     @JoinTable({name: 'movie_has_directors'})
     directors?: DirectorInterface[];
 
-    @ManyToMany(type => Actor, actor => actor.movies,{eager: true})
+    @ManyToMany(type => Actor, actor => actor.movies, {eager: true})
     @JoinTable({name: 'movie_has_actors'})
     actors?: ActorInterface[];
 

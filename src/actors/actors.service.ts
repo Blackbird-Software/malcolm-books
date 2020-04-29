@@ -7,11 +7,11 @@ import {UpdateActorDto} from './dto/update-actor.dto';
 
 @Injectable()
 export class ActorsService {
+
     constructor(
         @InjectRepository(ActorRepository)
-        private directorRepository: ActorRepository,
-    ) {
-    }
+        private readonly directorRepository: ActorRepository,
+    ) {}
 
     async create(dto: CreateActorDto): Promise<ActorInterface> {
         return this.directorRepository.createActor(dto);
@@ -21,7 +21,7 @@ export class ActorsService {
         return this.directorRepository.updateActor(id, dto);
     }
 
-    findAll(): Promise<ActorInterface[]> {
+    async findAll(): Promise<ActorInterface[]> {
         return this.directorRepository.find();
     }
 

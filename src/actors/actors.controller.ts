@@ -22,10 +22,9 @@ import {Gender} from '../common/gender.enum';
 @Controller('actors')
 @UseGuards(AuthGuard())
 export class ActorsController {
-    private logger = new Logger('ActorsController');
 
-    constructor(private actorsService: ActorsService) {
-    }
+    private readonly logger = new Logger('ActorsController');
+    constructor(private readonly actorsService: ActorsService) {}
 
     @Post()
     create(

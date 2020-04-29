@@ -7,7 +7,8 @@ import {UpdateGenreDto} from './dto/update-genre.dto';
 
 @EntityRepository(Genre)
 export class GenreRepository extends Repository<Genre> {
-    private logger = new Logger('GenreRepository');
+
+    private readonly logger = new Logger('GenreRepository');
 
     async createGenre(dto: CreateGenreDto): Promise<GenreInterface> {
         const {name, description} = dto;

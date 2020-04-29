@@ -20,10 +20,9 @@ import {DirectorInterface} from './director.interface';
 @Controller('directors')
 @UseGuards(AuthGuard())
 export class DirectorsController {
-    private logger = new Logger('DirectorsController');
 
-    constructor(private directorsService: DirectorsService) {
-    }
+    private logger = new Logger('DirectorsController');
+    constructor(private readonly directorsService: DirectorsService) {}
 
     @Post()
     create(@Body() dto: CreateDirectorDto): Promise<DirectorInterface> {

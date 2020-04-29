@@ -5,8 +5,8 @@ import {
     Logger,
     Param,
     ParseUUIDPipe, Patch,
-    Post, Put,
-    UseGuards,
+    Post, Put, Query,
+    UseGuards, ValidationPipe,
 } from '@nestjs/common';
 import {AuthGuard} from '@nestjs/passport';
 import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
@@ -23,19 +23,23 @@ import {DirectorInterface} from '../directors/director.interface';
 import {ActorsValidationPipes} from './pipes/actors-validation.pipes';
 import {ActorInterface} from '../actors/actor.interface';
 import {ChangeActorsDto} from './dto/change-actors.dto';
+import {YearValidationPipe} from '../common/pipes/year-validation.pipe';
+import {GetMoviesFilterDto} from './dto/get-movies-filter.dto';
 
 @ApiBearerAuth()
 @ApiTags('movies')
 @Controller('movies')
 @UseGuards(AuthGuard())
 export class MoviesController {
-    private logger = new Logger('MoviesController');
 
-    constructor(private moviesService: MoviesService) {
-    }
+    private logger = new Logger('MoviesController');
+    constructor(private readonly moviesService: MoviesService) {}
 
     @Post()
-    create(@Body() dto: CreateMovieDto): Promise<MovieInterface> {
+    create(
+        @Body('premiere', YearValidationPipe) premiere: Date,
+        @Body() dto: CreateMovieDto,
+    ): Promise<MovieInterface> {
         return this.moviesService.create(dto);
     }
 
@@ -75,8 +79,10 @@ export class MoviesController {
     }
 
     @Get()
-    getAll(): Promise<MovieInterface[]> {
-        return this.moviesService.findAll();
+    getBy(
+        @Query(ValidationPipe) filter: GetMoviesFilterDto,
+    ): Promise<MovieInterface[]> {
+        return this.moviesService.findBy(filter);
     }
 
     @Get('/:id')

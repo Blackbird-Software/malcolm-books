@@ -7,7 +7,8 @@ import {UpdateDirectorDto} from './dto/update-director.dto';
 
 @EntityRepository(Director)
 export class DirectorRepository extends Repository<Director> {
-    private logger = new Logger('DirectorRepository');
+
+    private readonly logger = new Logger('DirectorRepository');
 
     async createDirector(dto: CreateDirectorDto): Promise<DirectorInterface> {
         const {firstName, lastName} = dto;

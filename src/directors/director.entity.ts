@@ -1,7 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany} from 'typeorm';
 import {DirectorInterface} from './director.interface';
-import {Movie} from "../movies/movie.entity";
-import {MovieInterface} from "../movies/movie.interface";
+import {Movie} from '../movies/movie.entity';
+import {MovieInterface} from '../movies/movie.interface';
 
 @Entity('directors')
 export class Director extends BaseEntity implements DirectorInterface {
@@ -16,7 +16,7 @@ export class Director extends BaseEntity implements DirectorInterface {
     lastName: string;
 
     @ManyToMany(type => Movie, movie => movie.directors, {
-        cascade: true
+        cascade: true,
     })
     movies?: MovieInterface[];
 }

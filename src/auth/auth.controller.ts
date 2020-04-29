@@ -16,10 +16,10 @@ import {JwtResponseInterface} from './jwt/jwt-response.interface';
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
+
     constructor(
-        private authService: AuthService,
-    ) {
-    }
+        private readonly authService: AuthService,
+    ) {}
 
     @Post('/token')
     @HttpCode(200)

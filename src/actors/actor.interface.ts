@@ -1,5 +1,5 @@
 import {Gender} from '../common/gender.enum';
-import {MovieInterface} from "../movies/movie.interface";
+import {MovieInterface} from '../movies/movie.interface';
 
 export interface ActorInterface {
     readonly id: string;

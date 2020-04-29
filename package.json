@@ -1,7 +1,7 @@
 {
-  "name": "malcolm-books",
+  "name": "malcolm-movies",
   "version": "0.0.1",
-  "description": "Malcolm books",
+  "description": "Malcolm movies",
   "author": "Grzegorz Wawrzak",
   "license": "MIT",
   "scripts": {
@@ -36,6 +36,7 @@
     "class-transformer": "^0.2.3",
     "class-validator": "^0.9.1",
     "config": "^3.1.0",
+    "moment": "^2.24.0",
     "mysql": "^2.18.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",

@@ -21,7 +21,7 @@ export class DirectorsService {
         return this.directorRepository.updateDirector(id, dto);
     }
 
-    findAll(): Promise<DirectorInterface[]> {
+    async findAll(): Promise<DirectorInterface[]> {
         return this.directorRepository.find();
     }
 

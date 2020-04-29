@@ -7,10 +7,11 @@ import {UpdateMovieDto} from './dto/update-movie.dto';
 import {GenreInterface} from '../genres/genre.interface';
 import {ActorInterface} from '../actors/actor.interface';
 import {DirectorInterface} from '../directors/director.interface';
+import {GetMoviesFilterDto} from './dto/get-movies-filter.dto';
 
 @EntityRepository(Movie)
 export class MovieRepository extends Repository<Movie> {
-    private logger = new Logger('MovieRepository');
+    private readonly logger = new Logger('MovieRepository');
 
     async createMovie(dto: CreateMovieDto): Promise<MovieInterface> {
         const exists = await this.findOne(dto.title);
@@ -60,6 +61,17 @@ export class MovieRepository extends Repository<Movie> {
         await movie.save();
 
         return movie;
+    }
+
+    async findBy(filter: GetMoviesFilterDto): Promise<MovieInterface[]> {
+        const search = filter.search;
+        const query = this.createQueryBuilder('mv');
+
+        if (search) {
+            query.andWhere('(mv.title LIKE :search OR mv.description LIKE :search)', {search: `%${search}%`});
+        }
+
+        return await query.getMany();
     }
 
     private async getMovie(id: string): Promise<Movie> {

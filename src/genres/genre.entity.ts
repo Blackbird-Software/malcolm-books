@@ -1,7 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, Unique, BaseEntity, ManyToMany, Index} from 'typeorm';
 import {GenreInterface} from './genre.interface';
-import {Movie} from "../movies/movie.entity";
-import {MovieInterface} from "../movies/movie.interface";
+import {Movie} from '../movies/movie.entity';
+import {MovieInterface} from '../movies/movie.interface';
 
 @Entity('genres')
 export class Genre extends BaseEntity implements GenreInterface {
@@ -17,7 +17,7 @@ export class Genre extends BaseEntity implements GenreInterface {
     description?: string;
 
     @ManyToMany(type => Movie, movie => movie.genres, {
-        cascade: true
+        cascade: true,
     })
     movies?: MovieInterface[];
 }
