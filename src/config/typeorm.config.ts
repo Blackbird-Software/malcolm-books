@@ -20,7 +20,7 @@ const config: ConnectionOptions = {
     logging: true,
     logger: 'file',
 
-    migrations: [__dirname + '/../migrations/**/*.ts'],
+    migrations: [__dirname + '/../migrations/*.ts'],
     cli: {
         migrationsDir: 'src/migrations',
     },

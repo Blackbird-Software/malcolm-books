@@ -1,13 +1,9 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class initialize1588124174262 implements MigrationInterface {
-    name = 'initialize1588124174262'
+export class initialize1588134884429 implements MigrationInterface {
+    name = 'initialize1588134884429'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query("CREATE TABLE `actors` (`id` varchar(36) NOT NULL, `firstName` varchar(255) NOT NULL, `lastName` varchar(255) NOT NULL, `gender` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB", undefined);
-        await queryRunner.query("CREATE TABLE `directors` (`id` varchar(36) NOT NULL, `firstName` varchar(255) NOT NULL, `lastName` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB", undefined);
-        await queryRunner.query("CREATE TABLE `genres` (`id` varchar(36) NOT NULL, `name` varchar(255) NOT NULL, `description` varchar(255) NULL, UNIQUE INDEX `IDX_f105f8230a83b86a346427de94` (`name`), PRIMARY KEY (`id`)) ENGINE=InnoDB", undefined);
-        await queryRunner.query("CREATE TABLE `movies` (`id` varchar(36) NOT NULL, `title` varchar(255) NOT NULL, `description` varchar(255) NULL, `premiere` varchar(255) NOT NULL, `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), PRIMARY KEY (`id`)) ENGINE=InnoDB", undefined);
         await queryRunner.query("CREATE TABLE `users` (`id` varchar(36) NOT NULL, `email` varchar(255) NOT NULL, `firstName` varchar(255) NOT NULL, `lastName` varchar(255) NOT NULL, `password` varchar(255) NOT NULL, `salt` varchar(255) NOT NULL, `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), UNIQUE INDEX `IDX_97672ac88f789774dd47f7c8be` (`email`), PRIMARY KEY (`id`)) ENGINE=InnoDB", undefined);
         await queryRunner.query("CREATE TABLE `movie_has_genres` (`moviesId` varchar(36) NOT NULL, `genresId` varchar(36) NOT NULL, INDEX `IDX_c44c12a1a550b00d88acced4e3` (`moviesId`), INDEX `IDX_ad86f5914b9137bf83e60721a7` (`genresId`), PRIMARY KEY (`moviesId`, `genresId`)) ENGINE=InnoDB", undefined);
         await queryRunner.query("CREATE TABLE `movie_has_directors` (`moviesId` varchar(36) NOT NULL, `directorsId` varchar(36) NOT NULL, INDEX `IDX_50b396623f43d81877d1699447` (`moviesId`), INDEX `IDX_ecb89516f79101754bfc8ad97a` (`directorsId`), PRIMARY KEY (`moviesId`, `directorsId`)) ENGINE=InnoDB", undefined);
@@ -38,11 +34,6 @@ export class initialize1588124174262 implements MigrationInterface {
         await queryRunner.query("DROP TABLE `movie_has_genres`", undefined);
         await queryRunner.query("DROP INDEX `IDX_97672ac88f789774dd47f7c8be` ON `users`", undefined);
         await queryRunner.query("DROP TABLE `users`", undefined);
-        await queryRunner.query("DROP TABLE `movies`", undefined);
-        await queryRunner.query("DROP INDEX `IDX_f105f8230a83b86a346427de94` ON `genres`", undefined);
-        await queryRunner.query("DROP TABLE `genres`", undefined);
-        await queryRunner.query("DROP TABLE `directors`", undefined);
-        await queryRunner.query("DROP TABLE `actors`", undefined);
     }
 
 }

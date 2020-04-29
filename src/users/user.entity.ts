@@ -12,7 +12,6 @@ import {Exclude} from 'class-transformer';
 import {UserInterface} from './user.interface';
 
 @Entity('users')
-@Unique(['email'])
 export class User extends BaseEntity implements UserInterface {
 
     @PrimaryGeneratedColumn('uuid')

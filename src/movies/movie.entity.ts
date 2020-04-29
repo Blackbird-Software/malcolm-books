@@ -33,15 +33,15 @@ export class Movie extends BaseEntity implements MovieInterface {
     @Column()
     premiere: string;
 
-    @ManyToMany(type => Genre, {eager: true})
+    @ManyToMany(type => Genre,genre => genre.movies, {eager: true})
     @JoinTable({name: 'movie_has_genres'})
     genres?: GenreInterface[];
 
-    @ManyToMany(type => Director, {eager: true})
+    @ManyToMany(type => Director, director => director.movies, {eager: true})
     @JoinTable({name: 'movie_has_directors'})
     directors?: DirectorInterface[];
 
-    @ManyToMany(type => Actor, {eager: true})
+    @ManyToMany(type => Actor, actor => actor.movies,{eager: true})
     @JoinTable({name: 'movie_has_actors'})
     actors?: ActorInterface[];
 
