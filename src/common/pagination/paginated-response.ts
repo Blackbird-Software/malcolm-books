@@ -9,7 +9,7 @@ export default class PaginatedResponse implements PaginatedResponseInterface {
     items: any[];
     total: number;
 
-    links: PaginationLinksInterface;
+    _links: PaginationLinksInterface;
 
     public static DEFAULT_PER_PAGE = 25;
     public static DEFAULT_PAGE = 1;
@@ -19,7 +19,7 @@ export default class PaginatedResponse implements PaginatedResponseInterface {
         this.total = total;
         this.page = page || PaginatedResponse.DEFAULT_PAGE;
         this.perPage = perPage || PaginatedResponse.DEFAULT_PER_PAGE;
-        this.links = links;
+        this._links = links;
     }
 
     createResponse(): any {
@@ -31,11 +31,11 @@ export default class PaginatedResponse implements PaginatedResponseInterface {
             page: this.page,
             perPage: this.perPage,
 
-            links: {
-                first: this.links.first,
-                last: this.links.last,
-                prev: this.links.prev,
-                next: this.links.next,
+            _links: {
+                first: this._links.first,
+                last: this._links.last,
+                prev: this._links.prev,
+                next: this._links.next,
             },
         };
     }

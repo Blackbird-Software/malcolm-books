@@ -2,10 +2,10 @@ import {NestFactory, Reflector} from '@nestjs/core';
 import {SwaggerModule, DocumentBuilder} from '@nestjs/swagger';
 import {ClassSerializerInterceptor, Logger} from '@nestjs/common';
 import {AppModule} from './app.module';
-import * as config from 'config';
+import config from 'config';
 
 async function bootstrap() {
-    const serverConfig = config.get('server');
+    const serverConfig = config.server;
     const logger = new Logger('bootstrap');
     const app = await NestFactory.create(AppModule);
     app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));

@@ -28,6 +28,7 @@ import {GetMoviesFilterDto} from './dto/get-movies-filter.dto';
 import {PaginationParamsDto} from '../common/pagination/dto/pagination-params.dto';
 import PaginatedResponseInterface from '../common/pagination/paginated-response.interface';
 import {GetCurrentPath} from '../common/decorators/get-current-path.decorator';
+import hateoas from '../common/hateoas/hateoas.decorator';
 
 @ApiBearerAuth()
 @ApiTags('movies')
@@ -94,8 +95,18 @@ export class MoviesController {
     }
 
     @Get('/:id')
-    getById(@Param('id', ParseUUIDPipe) id: string): Promise<MovieInterface> {
-        return this.moviesService.findById(id);
+    async getById(
+        @Param('id', ParseUUIDPipe) id: string,
+        @GetCurrentPath() currentPath: string,
+    ): Promise<any> {
+        const movie = await this.moviesService.findById(id);
+        const links = [{
+            name: 'self',
+            method: 'GET',
+            href: currentPath.replace(':id', id),
+        }];
+
+        return hateoas(movie, links);
     }
 
     @Delete('/:id')

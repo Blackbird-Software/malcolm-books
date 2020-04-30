@@ -1,19 +1,21 @@
 import {PipeTransform, BadRequestException, ArgumentMetadata, Injectable} from '@nestjs/common';
-import * as moment from 'moment';
+import {format, isValid, parseISO} from 'date-fns'
 
 @Injectable()
 export class YearValidationPipe implements PipeTransform {
 
     transform(value: any, metadata: ArgumentMetadata) {
 
-        if (!YearValidationPipe.isValid(value)) {
+        if (!YearValidationPipe.checkIfValid(value)) {
             throw new BadRequestException('Invalid date provided. ');
         }
 
-        return moment(value).format('YYYY');
+        return format(parseISO(value), 'yyyy');
     }
 
-    private static isValid(year: any): boolean {
-        return moment(year, 'YYYY', true).isValid();
+    public static checkIfValid(value: any): boolean {
+        const dt = new Date(value, 0, 0);
+
+        return isValid(dt);
     }
 }

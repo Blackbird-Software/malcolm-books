@@ -5,11 +5,11 @@ import { UserRepository } from '../users/user.repository';
 import { LoginDto } from './dto/login.dto';
 import { JwtPayloadInterface } from './jwt/jwt-payload.interface';
 
-import * as config from 'config';
+import config from 'config';
 import {JwtResponse} from './jwt/jwt-response';
 import {JwtResponseInterface} from './jwt/jwt-response.interface';
 
-const jwtConfig = config.get('jwt');
+const jwtConfig = config.jwt;
 
 @Injectable()
 export class AuthService {

@@ -1,9 +1,8 @@
-import * as configBag from 'config';
+import config from 'config';
 import {ConnectionOptions} from 'typeorm';
 
-const dbConfig = configBag.get('db');
-
-const config: ConnectionOptions = {
+const dbConfig = config.db;
+const ormConfig: ConnectionOptions = {
     type: process.env.DB_DRIVER || dbConfig.type,
     host: process.env.DB_HOSTNAME || dbConfig.host,
     port: process.env.DB_PORT || dbConfig.port,
@@ -24,4 +23,4 @@ const config: ConnectionOptions = {
     },
 };
 
-export = config;
+export = ormConfig;
