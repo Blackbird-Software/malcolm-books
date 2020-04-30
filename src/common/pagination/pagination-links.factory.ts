@@ -7,15 +7,18 @@ import {PaginationParamsDto} from './dto/pagination-params.dto';
 export default class PaginationLinksFactory {
 
     private readonly qb: SelectQueryBuilder<any>;
+    private readonly total: number;
     private readonly paginationParams: PaginationParamsDto;
     private readonly routeParams: { path: string, params?: any[] };
 
     constructor(
         qb: SelectQueryBuilder<any>,
+        total: number,
         paginationParams: PaginationParamsDto,
         routeParams: { path: string, params?: any[] },
     ) {
         this.qb = qb;
+        this.total = total;
         this.paginationParams = paginationParams;
         this.routeParams = routeParams;
     }
@@ -23,12 +26,8 @@ export default class PaginationLinksFactory {
     async createLinks(): Promise<PaginationLinks> {
 
         const {page, perPage} = this.paginationParams;
-        const total = await this.qb
-            .where('1=1')
-            .getCount();
-
         const first = 1;
-        const last = Math.ceil(total / perPage);
+        const last = Math.ceil(this.total / perPage);
         let prev = null;
         let next = null;
 

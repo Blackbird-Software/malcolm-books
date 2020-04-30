@@ -6,7 +6,6 @@ import {PaginationParamsDto} from './dto/pagination-params.dto';
 
 export default class PaginationFactory {
 
-    private linksFactory: PaginationLinksFactory;
     private readonly qb: SelectQueryBuilder<any>;
     private readonly paginationParams: PaginationParamsDto;
     private readonly routeParams: { path: string, params?: any[] };
@@ -19,14 +18,11 @@ export default class PaginationFactory {
         this.qb = qb;
         this.paginationParams = paginationParams;
         this.routeParams = routeParams;
-        this.linksFactory = new PaginationLinksFactory(qb, paginationParams, routeParams);
     }
 
     async createPaginatedResponse(): Promise<PaginatedResponseInterface> {
 
         const {page, perPage} = this.paginationParams;
-        const links = await this.linksFactory.createLinks();
-
         const items = await this.qb
             .offset(perPage * (page - 1))
             .limit(perPage)
@@ -35,6 +31,9 @@ export default class PaginationFactory {
         const total = await this.qb
             .where('1=1')
             .getCount();
+
+        const linksFactory = new PaginationLinksFactory(this.qb, total, this.paginationParams, this.routeParams);
+        const links = await linksFactory.createLinks();
 
         return new PaginatedResponse(
             items,
