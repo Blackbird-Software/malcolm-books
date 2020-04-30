@@ -22,7 +22,7 @@ import {ActorsService} from '../actors/actors.service';
         AuthModule,
         GenresModule,
         DirectorRepository,
-        ActorRepository
+        ActorRepository,
     ],
     controllers: [MoviesController],
     providers: [MoviesService, GenresService, DirectorsService, ActorsService],

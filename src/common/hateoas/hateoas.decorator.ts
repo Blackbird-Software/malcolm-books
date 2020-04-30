@@ -9,5 +9,5 @@ export default function hateoas(toDecorate: any, links: HateoasLinkInterface[]):
         formattedLinks = {...formattedLinks, ...{[linkName]: hateoasLink}};
     }
 
-    return {...toDecorate, ...{'_links': formattedLinks}};
+    return {...toDecorate, ...{_links: formattedLinks}};
 }

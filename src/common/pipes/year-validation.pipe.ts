@@ -1,5 +1,5 @@
 import {PipeTransform, BadRequestException, ArgumentMetadata, Injectable} from '@nestjs/common';
-import {format, isValid, parseISO} from 'date-fns'
+import {format, isValid, parseISO} from 'date-fns';
 
 @Injectable()
 export class YearValidationPipe implements PipeTransform {
