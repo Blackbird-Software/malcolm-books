@@ -8,6 +8,9 @@ import {GenreInterface} from '../genres/genre.interface';
 import {DirectorInterface} from '../directors/director.interface';
 import {ActorInterface} from '../actors/actor.interface';
 import {GetMoviesFilterDto} from './dto/get-movies-filter.dto';
+import {PaginationParamsDto} from '../common/pagination/dto/pagination-params.dto';
+import PaginatedResponseInterface from '../common/pagination/paginated-response.interface';
+import PaginationFactory from '../common/pagination/pagination.factory';
 
 @Injectable()
 export class MoviesService {
@@ -22,7 +25,7 @@ export class MoviesService {
     }
 
     async update(id: string, dto: UpdateMovieDto): Promise<MovieInterface> {
-       return this.movieRepository.updateMovie(id, dto);
+        return this.movieRepository.updateMovie(id, dto);
     }
 
     async changeGenres(id: string, genres: GenreInterface[]): Promise<MovieInterface> {
@@ -41,8 +44,15 @@ export class MoviesService {
         return this.movieRepository.find();
     }
 
-    async findBy(filter: GetMoviesFilterDto): Promise<MovieInterface[]> {
-        return this.movieRepository.findBy(filter);
+    async findBy(
+        filter: GetMoviesFilterDto,
+        paginationParams: PaginationParamsDto,
+        routeParams: { path: string, params?: any[] },
+    ): Promise<PaginatedResponseInterface> {
+        const qb = await this.movieRepository.getQb(filter);
+        const paginationFactory = new PaginationFactory(qb, paginationParams, routeParams);
+
+        return paginationFactory.createPaginatedResponse();
     }
 
     async findById(id: string): Promise<MovieInterface> {

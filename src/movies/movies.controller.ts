@@ -6,7 +6,7 @@ import {
     Param,
     ParseUUIDPipe, Patch,
     Post, Put, Query,
-    UseGuards, ValidationPipe,
+    UseGuards, UsePipes, ValidationPipe,
 } from '@nestjs/common';
 import {AuthGuard} from '@nestjs/passport';
 import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
@@ -25,6 +25,9 @@ import {ActorInterface} from '../actors/actor.interface';
 import {ChangeActorsDto} from './dto/change-actors.dto';
 import {YearValidationPipe} from '../common/pipes/year-validation.pipe';
 import {GetMoviesFilterDto} from './dto/get-movies-filter.dto';
+import {PaginationParamsDto} from '../common/pagination/dto/pagination-params.dto';
+import PaginatedResponseInterface from '../common/pagination/paginated-response.interface';
+import {GetCurrentPath} from '../common/decorators/get-current-path.decorator';
 
 @ApiBearerAuth()
 @ApiTags('movies')
@@ -33,7 +36,9 @@ import {GetMoviesFilterDto} from './dto/get-movies-filter.dto';
 export class MoviesController {
 
     private logger = new Logger('MoviesController');
-    constructor(private readonly moviesService: MoviesService) {}
+
+    constructor(private readonly moviesService: MoviesService) {
+    }
 
     @Post()
     create(
@@ -79,10 +84,13 @@ export class MoviesController {
     }
 
     @Get()
+    @UsePipes(new ValidationPipe({transform: true}))
     getBy(
-        @Query(ValidationPipe) filter: GetMoviesFilterDto,
-    ): Promise<MovieInterface[]> {
-        return this.moviesService.findBy(filter);
+        @Query() filter: GetMoviesFilterDto,
+        @Query() paginationParams: PaginationParamsDto,
+        @GetCurrentPath() currentPath: string,
+    ): Promise<PaginatedResponseInterface> {
+        return this.moviesService.findBy(filter, paginationParams, {path: currentPath});
     }
 
     @Get('/:id')

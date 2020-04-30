@@ -1,4 +1,4 @@
-import {EntityRepository, Repository} from 'typeorm';
+import {EntityRepository, QueryBuilder, Repository, SelectQueryBuilder} from 'typeorm';
 import {ConflictException, Logger, NotFoundException} from '@nestjs/common';
 import {Movie} from './movie.entity';
 import {CreateMovieDto} from './dto/create-movie.dto';
@@ -8,6 +8,7 @@ import {GenreInterface} from '../genres/genre.interface';
 import {ActorInterface} from '../actors/actor.interface';
 import {DirectorInterface} from '../directors/director.interface';
 import {GetMoviesFilterDto} from './dto/get-movies-filter.dto';
+import {PaginationParamsDto} from '../common/pagination/dto/pagination-params.dto';
 
 @EntityRepository(Movie)
 export class MovieRepository extends Repository<Movie> {
@@ -63,15 +64,15 @@ export class MovieRepository extends Repository<Movie> {
         return movie;
     }
 
-    async findBy(filter: GetMoviesFilterDto): Promise<MovieInterface[]> {
+    async getQb(filter: GetMoviesFilterDto): Promise<SelectQueryBuilder<any>> {
         const search = filter.search;
-        const query = this.createQueryBuilder('mv');
+        const qb = this.createQueryBuilder('mv');
 
         if (search) {
-            query.andWhere('(mv.title LIKE :search OR mv.description LIKE :search)', {search: `%${search}%`});
+            qb.andWhere('(mv.title LIKE :search OR mv.description LIKE :search)', {search: `%${search}%`});
         }
 
-        return await query.getMany();
+        return qb;
     }
 
     private async getMovie(id: string): Promise<Movie> {
