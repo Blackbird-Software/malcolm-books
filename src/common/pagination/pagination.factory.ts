@@ -27,13 +27,18 @@ export default class PaginationFactory {
         const {page, perPage} = this.paginationParams;
         const links = await this.linksFactory.createLinks();
 
-        this.qb.offset(perPage * (page - 1));
-        this.qb.limit(perPage);
+        const items = await this.qb
+            .offset(perPage * (page - 1))
+            .limit(perPage)
+            .getMany();
 
-        const items = await this.qb.getMany();
+        const total = await this.qb
+            .where('1=1')
+            .getCount();
 
         return new PaginatedResponse(
             items,
+            total,
             page,
             perPage,
             links,

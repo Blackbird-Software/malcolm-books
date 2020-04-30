@@ -14,9 +14,9 @@ export default class PaginatedResponse implements PaginatedResponseInterface {
     public static DEFAULT_PER_PAGE = 25;
     public static DEFAULT_PAGE = 1;
 
-    constructor(items: any[], page: number, perPage: number, links: PaginationLinksInterface) {
+    constructor(items: any[], total: number, page: number, perPage: number, links: PaginationLinksInterface) {
         this.items = items;
-        this.total = items.length;
+        this.total = total;
         this.page = page || PaginatedResponse.DEFAULT_PAGE;
         this.perPage = perPage || PaginatedResponse.DEFAULT_PER_PAGE;
         this.links = links;
@@ -26,7 +26,7 @@ export default class PaginatedResponse implements PaginatedResponseInterface {
 
         return {
             items: this.items,
-            count: this.total,
+            total: this.total,
 
             page: this.page,
             perPage: this.perPage,
