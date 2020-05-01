@@ -1,8 +1,8 @@
 import {
     BadRequestException,
-    Controller,
-    Get,
-    Param,
+    Controller, Delete,
+    Get, HttpCode,
+    Param, ParseUUIDPipe,
     Post,
     Res,
     UploadedFile,
@@ -18,7 +18,6 @@ import {diskStorage} from 'multer';
 import {FilesService} from "./files.service";
 import {FileInterface} from "./file.interface";
 import {File} from "./file.entity";
-
 
 @ApiBearerAuth()
 @ApiTags('files')
@@ -48,32 +47,28 @@ export class FilesController {
         return this.filesService.create(file);
     }
 
-    @Get(':path/show')
-    async serverFile(@Param('path') path, @Res() res): Promise<any> {
-        res.sendFile(path, {root: File.DEFAULT_UPLOAD_PATH});
+    @Get(':id/show')
+    async serverFile(
+        @Param('id', ParseUUIDPipe) id: string,
+        @Res() response
+    ): Promise<any> {
+        const file = await this.filesService.findById(id);
+        response.sendFile(file.name, {root: File.DEFAULT_UPLOAD_PATH});
     }
 
-    // @Put('/:id')
-    // update(
-    //     @Param('id', ParseUUIDPipe) id: string,
-    //     @Body() dto: UpdateGenreDto):
-    //     Promise<FileInterface> {
-    //     return this.genresService.update(id, dto);
-    // }
-    //
-    // @Get()
-    // getAll(): Promise<FileInterface[]> {
-    //     return this.genresService.findAll();
-    // }
-    //
-    // @Get('/:id')
-    // getById(@Param('id', ParseUUIDPipe) id: string): Promise<FileInterface> {
-    //     return this.genresService.findById(id);
-    // }
-    //
-    // @Delete('/:id')
-    // @HttpCode(204)
-    // delete(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
-    //     return this.genresService.delete(id);
-    // }
+    @Get()
+    getAll(): Promise<FileInterface[]> {
+        return this.filesService.findAll();
+    }
+
+    @Get('/:id')
+    getById(@Param('id', ParseUUIDPipe) id: string): Promise<FileInterface> {
+        return this.filesService.findById(id);
+    }
+
+    @Delete('/:id')
+    @HttpCode(204)
+    delete(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
+        return this.filesService.delete(id);
+    }
 }

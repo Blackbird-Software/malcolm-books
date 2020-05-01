@@ -1,7 +1,8 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
+import {Injectable, InternalServerErrorException, NotFoundException} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {FileRepository} from "./file.repository";
 import {FileInterface} from "./file.interface";
+import * as fs from 'fs';
 
 @Injectable()
 export class FilesService {
@@ -15,30 +16,29 @@ export class FilesService {
         return this.fileRepository.createFile(file);
     }
 
-    // async update(id: string, dto: UpdateDirectorDto): Promise<DirectorInterface> {
-    //     return this.directorRepository.updateDirector(id, dto);
-    // }
-    //
-    // async findAll(): Promise<DirectorInterface[]> {
-    //     return this.directorRepository.find();
-    // }
-    //
-    // async findById(id: string): Promise<DirectorInterface> {
-    //     const found = await this.directorRepository.findOne(id);
-    //
-    //     if (!found) {
-    //         throw new NotFoundException('Director not found. ');
-    //     }
-    //
-    //     return found;
-    // }
-    //
-    // async delete(id: string): Promise<void> {
-    //     const result = await this.directorRepository.delete(id);
-    //
-    //     if (result.affected === 0) {
-    //         throw new NotFoundException(`Director with uuid "${id}" not found. `);
-    //     }
-    // }
+    async findAll(): Promise<FileInterface[]> {
+        return this.fileRepository.find();
+    }
+
+    async findById(id: string): Promise<FileInterface> {
+        const found = await this.fileRepository.findOne(id);
+
+        if (!found) {
+            throw new NotFoundException('File not found. ');
+        }
+
+        return found;
+    }
+
+    async delete(id: string): Promise<void> {
+        const file = await this.findById(id);
+        const result = await this.fileRepository.delete(id);
+
+        try {
+            fs.unlinkSync(file.path);
+        } catch (e) {
+            throw new InternalServerErrorException(`File with uuid "${id}" could not be deleted. `);
+        }
+    }
 
 }
