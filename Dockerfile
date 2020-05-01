@@ -7,7 +7,7 @@ COPY . /opt/app
 
 # Install dependencies
 COPY package.json .
-RUN yarn install
+RUN yarn install --dev
 
 # Bundle app source
 COPY . .

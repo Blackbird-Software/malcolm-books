@@ -7,6 +7,7 @@ export interface MovieInterface {
     readonly title: string;
     readonly description?: string;
     readonly premiere: string;
+    readonly country: string;
     readonly genres?: GenreInterface[];
     readonly actors?: ActorInterface[];
     readonly directors?: DirectorInterface[];

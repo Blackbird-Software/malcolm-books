@@ -16,4 +16,9 @@ export class CreateMovieDto {
     @IsString()
     @IsOptional()
     readonly description?: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    readonly country: string;
 }

@@ -16,4 +16,9 @@ export class UpdateMovieDto {
     @IsString()
     @IsOptional()
     readonly description?: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    readonly country: string;
 }

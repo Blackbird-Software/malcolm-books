@@ -45,6 +45,10 @@ export class Movie extends BaseEntity implements MovieInterface {
     @JoinTable({name: 'movie_has_actors'})
     actors?: ActorInterface[];
 
+    @Index()
+    @Column()
+    country: string;
+
     @CreateDateColumn()
     createdAt: Date;
 

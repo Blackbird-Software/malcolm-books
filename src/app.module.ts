@@ -7,6 +7,7 @@ import {DirectorsModule} from './directors/directors.module';
 import {ActorsModule} from './actors/actors.module';
 import {MoviesModule} from './movies/movies.module';
 import * as config from './config/typeorm.config';
+import {EnumsModule} from './enums/enums.module';
 
 export function DatabaseOrmModule(): DynamicModule {
     return TypeOrmModule.forRoot(config);
@@ -21,6 +22,7 @@ export function DatabaseOrmModule(): DynamicModule {
         DirectorsModule,
         ActorsModule,
         MoviesModule,
+        EnumsModule,
     ],
 })
 export class AppModule {

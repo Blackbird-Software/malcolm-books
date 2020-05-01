@@ -29,6 +29,8 @@ import {PaginationParamsDto} from '../common/pagination/dto/pagination-params.dt
 import PaginatedResponseInterface from '../common/pagination/paginated-response.interface';
 import {GetCurrentPath} from '../common/decorators/get-current-path.decorator';
 import hateoas from '../common/hateoas/hateoas.decorator';
+import {CountryValidationPipe} from '../common/pipes/country-validation.pipe';
+import Country from '../common/country';
 
 @ApiBearerAuth()
 @ApiTags('movies')
@@ -37,13 +39,12 @@ import hateoas from '../common/hateoas/hateoas.decorator';
 export class MoviesController {
 
     private logger = new Logger('MoviesController');
-
-    constructor(private readonly moviesService: MoviesService) {
-    }
+    constructor(private readonly moviesService: MoviesService) {}
 
     @Post()
     create(
         @Body('premiere', YearValidationPipe) premiere: Date,
+        @Body('country', CountryValidationPipe) country: Country,
         @Body() dto: CreateMovieDto,
     ): Promise<MovieInterface> {
         return this.moviesService.create(dto);
@@ -52,6 +53,8 @@ export class MoviesController {
     @Put('/:id')
     update(
         @Param('id', ParseUUIDPipe) id: string,
+        @Body('premiere', YearValidationPipe) premiere: Date,
+        @Body('country', CountryValidationPipe) country: Country,
         @Body() dto: UpdateMovieDto,
     ): Promise<MovieInterface> {
         return this.moviesService.update(id, dto);

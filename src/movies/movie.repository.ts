@@ -25,6 +25,7 @@ export class MovieRepository extends Repository<Movie> {
         movie.title = dto.title;
         movie.description = dto.description;
         movie.premiere = dto.premiere;
+        movie.country = dto.country;
         await movie.save();
 
         return movie;
@@ -35,6 +36,7 @@ export class MovieRepository extends Repository<Movie> {
         movie.title = dto.title;
         movie.description = dto.description;
         movie.premiere = dto.premiere;
+        movie.country = dto.country;
         await movie.save();
 
         return movie;

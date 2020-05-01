@@ -45,6 +45,7 @@
     "rxjs": "^6.3.3",
     "swagger-ui-express": "^4.1.4",
     "ts-node": "^7.0.1",
+    "typed-countries": "^1.1.1",
     "typeorm": "^0.2.17",
     "typescript": "^3.2.4"
   },

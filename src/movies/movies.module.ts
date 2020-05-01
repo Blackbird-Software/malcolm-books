@@ -11,6 +11,7 @@ import {DirectorRepository} from '../directors/director.repository';
 import {ActorRepository} from '../actors/actor.repository';
 import {DirectorsService} from '../directors/directors.service';
 import {ActorsService} from '../actors/actors.service';
+import CountriesList from '../common/countries-list';
 
 // possibly get rid of some dependencies
 @Module({
@@ -25,7 +26,13 @@ import {ActorsService} from '../actors/actors.service';
         ActorRepository,
     ],
     controllers: [MoviesController],
-    providers: [MoviesService, GenresService, DirectorsService, ActorsService],
+    providers: [
+        MoviesService,
+        GenresService,
+        DirectorsService,
+        ActorsService,
+        CountriesList,
+    ],
 })
 export class MoviesModule {
 }
