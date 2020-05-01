@@ -14,13 +14,13 @@ import {MoviesService} from './movies.service';
 import {MovieInterface} from './movie.interface';
 import {CreateMovieDto} from './dto/create-movie.dto';
 import {UpdateMovieDto} from './dto/update-movie.dto';
-import {GenresValidationPipes} from './pipes/genres-validation.pipes';
+import {GenresValidationPipe} from './pipes/genres-validation.pipe';
 import {ChangeGenresDto} from './dto/change-genres.dto';
-import {DirectorsValidationPipes} from './pipes/directors-validation.pipes';
+import {DirectorsValidationPipe} from './pipes/directors-validation.pipe';
 import {ChangeDirectorsDto} from './dto/change-directors.dto';
 import {GenreInterface} from '../genres/genre.interface';
 import {DirectorInterface} from '../directors/director.interface';
-import {ActorsValidationPipes} from './pipes/actors-validation.pipes';
+import {ActorsValidationPipe} from './pipes/actors-validation.pipe';
 import {ActorInterface} from '../actors/actor.interface';
 import {ChangeActorsDto} from './dto/change-actors.dto';
 import {YearValidationPipe} from '../common/pipes/year-validation.pipe';
@@ -30,7 +30,9 @@ import PaginatedResponseInterface from '../common/pagination/paginated-response.
 import {GetCurrentPath} from '../common/decorators/get-current-path.decorator';
 import hateoas from '../common/hateoas/hateoas.decorator';
 import {CountryValidationPipe} from '../common/pipes/country-validation.pipe';
-import Country from '../common/country';
+import {FileValidationPipe} from '../files/pipes/file-validation.pipe';
+import {FileInterface} from '../files/file.interface';
+import CountryInterface from '../common/country.interface';
 
 @ApiBearerAuth()
 @ApiTags('movies')
@@ -39,12 +41,15 @@ import Country from '../common/country';
 export class MoviesController {
 
     private logger = new Logger('MoviesController');
-    constructor(private readonly moviesService: MoviesService) {}
+
+    constructor(private readonly moviesService: MoviesService) {
+    }
 
     @Post()
     create(
         @Body('premiere', YearValidationPipe) premiere: Date,
-        @Body('country', CountryValidationPipe) country: Country,
+        @Body('country', CountryValidationPipe) country: CountryInterface,
+        @Body('cover', FileValidationPipe) cover: FileInterface,
         @Body() dto: CreateMovieDto,
     ): Promise<MovieInterface> {
         return this.moviesService.create(dto);
@@ -54,7 +59,8 @@ export class MoviesController {
     update(
         @Param('id', ParseUUIDPipe) id: string,
         @Body('premiere', YearValidationPipe) premiere: Date,
-        @Body('country', CountryValidationPipe) country: Country,
+        @Body('country', CountryValidationPipe) country: CountryInterface,
+        @Body('cover', FileValidationPipe) cover: FileInterface,
         @Body() dto: UpdateMovieDto,
     ): Promise<MovieInterface> {
         return this.moviesService.update(id, dto);
@@ -63,7 +69,7 @@ export class MoviesController {
     @Patch('/:id/genres')
     changeGenres(
         @Param('id', ParseUUIDPipe) id: string,
-        @Body('genres', GenresValidationPipes) genres: GenreInterface[],
+        @Body('genres', GenresValidationPipe) genres: GenreInterface[],
         @Body() dto: ChangeGenresDto,
     ): Promise<MovieInterface> {
         return this.moviesService.changeGenres(id, genres);
@@ -72,7 +78,7 @@ export class MoviesController {
     @Patch('/:id/directors')
     changeDirectors(
         @Param('id', ParseUUIDPipe) id: string,
-        @Body('directors', DirectorsValidationPipes) directors: DirectorInterface[],
+        @Body('directors', DirectorsValidationPipe) directors: DirectorInterface[],
         @Body() dto: ChangeDirectorsDto,
     ): Promise<MovieInterface> {
         return this.moviesService.changeDirectors(id, directors);
@@ -81,10 +87,18 @@ export class MoviesController {
     @Patch('/:id/actors')
     changeActors(
         @Param('id', ParseUUIDPipe) id: string,
-        @Body('actors', ActorsValidationPipes) actors: ActorInterface[],
+        @Body('actors', ActorsValidationPipe) actors: ActorInterface[],
         @Body() dto: ChangeActorsDto,
     ): Promise<MovieInterface> {
         return this.moviesService.changeActors(id, actors);
+    }
+
+    @Patch('/:id/cover')
+    updateCover(
+        @Param('id', ParseUUIDPipe) id: string,
+        @Body('cover', FileValidationPipe) cover: FileInterface,
+    ): Promise<MovieInterface> {
+        return this.moviesService.updateCover(id, cover);
     }
 
     @Get()

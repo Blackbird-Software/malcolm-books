@@ -6,7 +6,7 @@ import {
     CreateDateColumn,
     ManyToMany,
     JoinTable,
-    UpdateDateColumn, Index,
+    UpdateDateColumn, Index, ManyToOne, OneToOne, JoinColumn,
 } from 'typeorm';
 import {Director} from '../directors/director.entity';
 import {Actor} from '../actors/actor.entity';
@@ -15,6 +15,8 @@ import {Genre} from '../genres/genre.entity';
 import {GenreInterface} from '../genres/genre.interface';
 import {DirectorInterface} from '../directors/director.interface';
 import {ActorInterface} from '../actors/actor.interface';
+import {FileInterface} from '../files/file.interface';
+import {File} from '../files/file.entity';
 
 @Entity('movies')
 export class Movie extends BaseEntity implements MovieInterface {
@@ -44,6 +46,14 @@ export class Movie extends BaseEntity implements MovieInterface {
     @ManyToMany(type => Actor, actor => actor.movies, {eager: true})
     @JoinTable({name: 'movie_has_actors'})
     actors?: ActorInterface[];
+
+    @OneToOne(
+        type => File,
+        file => file.movie,
+        {cascade: true, onDelete: 'SET NULL', eager: true},
+    )
+    @JoinColumn()
+    cover: FileInterface;
 
     @Index()
     @Column()

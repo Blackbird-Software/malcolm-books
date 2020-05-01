@@ -4,8 +4,11 @@ import {
     Column,
     BaseEntity,
     Index,
-    CreateDateColumn} from 'typeorm';
-import {FileInterface} from "./file.interface";
+    CreateDateColumn, OneToOne, JoinColumn,
+} from 'typeorm';
+import {FileInterface} from './file.interface';
+import {Movie} from '../movies/movie.entity';
+import {MovieInterface} from '../movies/movie.interface';
 
 @Entity('files')
 export class File extends BaseEntity implements FileInterface {
@@ -27,4 +30,11 @@ export class File extends BaseEntity implements FileInterface {
 
     @CreateDateColumn()
     createdAt: Date;
+
+    @OneToOne(
+        type => Movie,
+        movie => movie.cover,
+        {onDelete: 'SET NULL'},
+    )
+    movie: MovieInterface;
 }

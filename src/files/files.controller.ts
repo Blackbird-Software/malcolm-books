@@ -11,13 +11,13 @@ import {
 } from '@nestjs/common';
 import {AuthGuard} from '@nestjs/passport';
 import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
-import {FileInterceptor} from "@nestjs/platform-express";
-import {editFileName} from "./helper/edit-filename";
-import {imageFileFilter} from "./helper/image-file-filter";
+import {FileInterceptor} from '@nestjs/platform-express';
+import {editFileName} from './helper/edit-filename';
+import {imageFileFilter} from './helper/image-file-filter';
 import {diskStorage} from 'multer';
-import {FilesService} from "./files.service";
-import {FileInterface} from "./file.interface";
-import {File} from "./file.entity";
+import {FilesService} from './files.service';
+import {FileInterface} from './file.interface';
+import {File} from './file.entity';
 
 @ApiBearerAuth()
 @ApiTags('files')
@@ -50,7 +50,7 @@ export class FilesController {
     @Get(':id/show')
     async serverFile(
         @Param('id', ParseUUIDPipe) id: string,
-        @Res() response
+        @Res() response,
     ): Promise<any> {
         const file = await this.filesService.findById(id);
         response.sendFile(file.name, {root: File.DEFAULT_UPLOAD_PATH});

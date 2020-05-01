@@ -9,37 +9,25 @@ import {ActorInterface} from '../actors/actor.interface';
 import {DirectorInterface} from '../directors/director.interface';
 import {GetMoviesFilterDto} from './dto/get-movies-filter.dto';
 import {PaginationParamsDto} from '../common/pagination/dto/pagination-params.dto';
+import {FileInterface} from '../files/file.interface';
 
 @EntityRepository(Movie)
 export class MovieRepository extends Repository<Movie> {
     private readonly logger = new Logger('MovieRepository');
 
-    async createMovie(dto: CreateMovieDto): Promise<MovieInterface> {
+    async createMovie(dto: CreateMovieDto, cover: FileInterface): Promise<MovieInterface> {
         const exists = await this.findOne(dto.title);
 
         if (exists) {
             throw new ConflictException('Movie with the same name already exists. ');
         }
 
-        const movie = new Movie();
-        movie.title = dto.title;
-        movie.description = dto.description;
-        movie.premiere = dto.premiere;
-        movie.country = dto.country;
-        await movie.save();
-
-        return movie;
+        return this.populateAndSaveData(new Movie(), dto, cover);
     }
 
-    async updateMovie(id: string, dto: UpdateMovieDto): Promise<MovieInterface> {
+    async updateMovie(id: string, dto: UpdateMovieDto, cover: FileInterface): Promise<MovieInterface> {
         const movie = await this.findOne(id);
-        movie.title = dto.title;
-        movie.description = dto.description;
-        movie.premiere = dto.premiere;
-        movie.country = dto.country;
-        await movie.save();
-
-        return movie;
+        return this.populateAndSaveData(movie, dto, cover);
     }
 
     async changeGenres(id: string, genres: GenreInterface[]): Promise<MovieInterface> {
@@ -66,6 +54,14 @@ export class MovieRepository extends Repository<Movie> {
         return movie;
     }
 
+    async updateCover(id: string, cover: FileInterface): Promise<MovieInterface> {
+        const movie = await this.getMovie(id);
+        movie.cover = cover;
+        await movie.save();
+
+        return movie;
+    }
+
     async getQb(filter: GetMoviesFilterDto): Promise<SelectQueryBuilder<any>> {
         const search = filter.search;
         const qb = this.createQueryBuilder('mv');
@@ -83,6 +79,22 @@ export class MovieRepository extends Repository<Movie> {
         if (!movie) {
             throw new NotFoundException('Movie does not exists. ');
         }
+
+        return movie;
+    }
+
+    private async populateAndSaveData(
+        movie: Movie,
+        dto: UpdateMovieDto,
+        cover: FileInterface,
+    ): Promise<MovieInterface> {
+
+        movie.title = dto.title;
+        movie.description = dto.description;
+        movie.premiere = dto.premiere;
+        movie.country = dto.country;
+        movie.cover = cover;
+        await movie.save();
 
         return movie;
     }

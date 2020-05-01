@@ -3,7 +3,7 @@ import {DirectorsService} from '../../directors/directors.service';
 import {DirectorInterface} from '../../directors/director.interface';
 
 @Injectable()
-export class DirectorsValidationPipes implements PipeTransform {
+export class DirectorsValidationPipe implements PipeTransform {
 
     constructor(private directorsService: DirectorsService) {
     }

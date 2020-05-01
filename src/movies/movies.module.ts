@@ -12,18 +12,21 @@ import {ActorRepository} from '../actors/actor.repository';
 import {DirectorsService} from '../directors/directors.service';
 import {ActorsService} from '../actors/actors.service';
 import CountriesList from '../common/countries-list';
+import {FilesService} from '../files/files.service';
+import {FileRepository} from '../files/file.repository';
 
-// possibly get rid of some dependencies
 @Module({
     imports: [
         TypeOrmModule.forFeature([MovieRepository]),
         TypeOrmModule.forFeature([GenreRepository]),
         TypeOrmModule.forFeature([DirectorRepository]),
         TypeOrmModule.forFeature([ActorRepository]),
+        TypeOrmModule.forFeature([FileRepository]),
         AuthModule,
         GenresModule,
         DirectorRepository,
         ActorRepository,
+        FileRepository,
     ],
     controllers: [MoviesController],
     providers: [
@@ -31,6 +34,7 @@ import CountriesList from '../common/countries-list';
         GenresService,
         DirectorsService,
         ActorsService,
+        FilesService,
         CountriesList,
     ],
 })

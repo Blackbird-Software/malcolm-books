@@ -1,6 +1,6 @@
 import {EntityRepository, Repository} from 'typeorm';
-import {FileInterface} from "./file.interface";
-import {File} from "./file.entity";
+import {FileInterface} from './file.interface';
+import {File} from './file.entity';
 
 @EntityRepository(File)
 export class FileRepository extends Repository<File> {

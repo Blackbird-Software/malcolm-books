@@ -1,4 +1,4 @@
-import {extname} from "path";
+import {extname} from 'path';
 
 export const editFileName = (req, file, callback) => {
     const fileExtName = extname(file.originalname);
@@ -9,4 +9,4 @@ export const editFileName = (req, file, callback) => {
     const currentTimestamp = new Date().getTime();
 
     callback(null, `${randomName}_${currentTimestamp}${fileExtName}`);
-}
+};

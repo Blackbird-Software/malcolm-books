@@ -22,7 +22,9 @@ export default class PaginationFactory {
 
     async createPaginatedResponse(): Promise<PaginatedResponseInterface> {
 
-        const {page, perPage} = this.paginationParams;
+        const page = this.paginationParams.page || PaginatedResponse.DEFAULT_PAGE;
+        const perPage = this.paginationParams.perPage || PaginatedResponse.DEFAULT_PER_PAGE;
+
         const items = await this.qb
             .offset(perPage * (page - 1))
             .limit(perPage)

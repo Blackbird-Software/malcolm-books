@@ -9,12 +9,12 @@ export class PaginationParamsDto {
     @IsPositive()
     @IsInt()
     @IsOptional()
-    readonly perPage: number;
+    readonly perPage?: number;
 
     @ApiProperty()
     @Type(() => Number)
     @IsPositive()
     @IsInt()
     @IsOptional()
-    readonly page: number;
+    readonly page?: number;
 }

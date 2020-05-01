@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from '../auth/auth.module';
-import {FilesController} from "./files.controller";
-import {MulterModule} from "@nestjs/platform-express";
-import {TypeOrmModule} from "@nestjs/typeorm";
-import {FileRepository} from "./file.repository";
-import {FilesService} from "./files.service";
-import {File} from "./file.entity";
+import {FilesController} from './files.controller';
+import {MulterModule} from '@nestjs/platform-express';
+import {TypeOrmModule} from '@nestjs/typeorm';
+import {FileRepository} from './file.repository';
+import {FilesService} from './files.service';
+import {File} from './file.entity';
 
 @Module({
     imports: [

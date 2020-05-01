@@ -1,11 +1,11 @@
 import {ArgumentMetadata, BadRequestException, Injectable, PipeTransform} from '@nestjs/common';
-import {GenreInterface} from '../../genres/genre.interface';
-import {GenresService} from '../../genres/genres.service';
+import {ActorInterface} from '../../actors/actor.interface';
+import {ActorsService} from '../../actors/actors.service';
 
 @Injectable()
-export class GenresValidationPipes implements PipeTransform {
+export class ActorsValidationPipe implements PipeTransform {
 
-    constructor(private genresService: GenresService) {
+    constructor(private actorsService: ActorsService) {
     }
 
     async transform(ids: any, metadata: ArgumentMetadata) {
@@ -16,11 +16,11 @@ export class GenresValidationPipes implements PipeTransform {
 
         // possibly should check uuid correctness and
         // not return so early - instead collect all errors and merge them into one error message if possible?
-        const genresPromise = ids.map(async id => await this.getGenre(id));
-        return await Promise.all(genresPromise);
+        const actorsPromises = ids.map(async id => await this.getActor(id));
+        return await Promise.all(actorsPromises);
     }
 
-    private async getGenre(id: string): Promise<GenreInterface> {
-        return this.genresService.findById(id);
+    private async getActor(id: string): Promise<ActorInterface> {
+        return this.actorsService.findById(id);
     }
 }

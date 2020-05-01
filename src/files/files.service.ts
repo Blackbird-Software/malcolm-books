@@ -1,7 +1,7 @@
 import {Injectable, InternalServerErrorException, NotFoundException} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {FileRepository} from "./file.repository";
-import {FileInterface} from "./file.interface";
+import {FileRepository} from './file.repository';
+import {FileInterface} from './file.interface';
 import * as fs from 'fs';
 
 @Injectable()
