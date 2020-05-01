@@ -64,7 +64,9 @@ export class MovieRepository extends Repository<Movie> {
 
     async getQb(filter: GetMoviesFilterDto): Promise<SelectQueryBuilder<any>> {
         const search = filter.search;
-        const qb = this.createQueryBuilder('mv');
+        const qb = this.createQueryBuilder('mv')
+            .leftJoinAndSelect("mv.cover", "cover");
+
 
         if (search) {
             qb.andWhere('(mv.title LIKE :search OR mv.description LIKE :search)', {search: `%${search}%`});
