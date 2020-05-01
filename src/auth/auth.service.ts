@@ -1,13 +1,12 @@
-import { Injectable, UnauthorizedException, Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from '../users/user.repository';
 import { LoginDto } from './dto/login.dto';
 import { JwtPayloadInterface } from './jwt/jwt-payload.interface';
-
-import config from 'config';
 import {JwtResponse} from './jwt/jwt-response';
 import {JwtResponseInterface} from './jwt/jwt-response.interface';
+import config from 'config';
 
 const jwtConfig = config.jwt;
 

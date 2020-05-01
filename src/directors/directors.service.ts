@@ -10,8 +10,7 @@ export class DirectorsService {
     constructor(
         @InjectRepository(DirectorRepository)
         private directorRepository: DirectorRepository,
-    ) {
-    }
+    ) {}
 
     async create(dto: CreateDirectorDto): Promise<DirectorInterface> {
         return this.directorRepository.createDirector(dto);
