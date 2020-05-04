@@ -14,7 +14,7 @@ const ormConfig: ConnectionOptions = {
     ],
     synchronize: process.env.TYPEORM_SYNC || dbConfig.synchronize,
     charset: 'utf8mb4_unicode_ci',
-    migrationsRun: false,
+    migrationsRun: !!process.env.RUN_MIGRATIONS || false,
     logging: true,
     logger: 'advanced-console',
     migrations: [__dirname + '/../migrations/*.ts'],
@@ -22,8 +22,8 @@ const ormConfig: ConnectionOptions = {
         migrationsDir: 'src/migrations',
     },
     extra: {
-        debug: true
-    }
+        debug: true,
+    },
 };
 
 export = ormConfig;
