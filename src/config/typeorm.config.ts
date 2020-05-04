@@ -3,12 +3,12 @@ import {ConnectionOptions} from 'typeorm';
 
 const dbConfig = config.db;
 const ormConfig: ConnectionOptions = {
-    type: process.env.DB_DRIVER || dbConfig.type,
-    host: process.env.DB_HOSTNAME || dbConfig.host,
-    port: process.env.DB_PORT || dbConfig.port,
-    username: process.env.DB_USERNAME || dbConfig.username,
-    password: process.env.DB_PASSWORD || dbConfig.password,
-    database: process.env.DB_NAME || dbConfig.database,
+    type: process.env.DATABASE_DRIVER || dbConfig.type,
+    host: process.env.DATABASE_HOSTNAME || dbConfig.host,
+    port: parseInt(process.env.DATABASE_PORT) || dbConfig.port,
+    username: process.env.DATABASE_USERNAME || dbConfig.username,
+    password: process.env.DATABASE_PASSWORD || dbConfig.password,
+    database: process.env.DATABASE_NAME || dbConfig.database,
     entities: [
         __dirname + '/../**/*.entity.ts',
     ],
@@ -16,11 +16,14 @@ const ormConfig: ConnectionOptions = {
     charset: 'utf8mb4_unicode_ci',
     migrationsRun: false,
     logging: true,
-    logger: 'file',
+    logger: 'advanced-console',
     migrations: [__dirname + '/../migrations/*.ts'],
     cli: {
         migrationsDir: 'src/migrations',
     },
+    extra: {
+        debug: true
+    }
 };
 
 export = ormConfig;

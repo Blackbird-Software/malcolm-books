@@ -2,8 +2,11 @@ version: '3.3'
 
 services:
   web:
-    image: r3m4k3/movies-web:latest
+    build: .
     restart: always
+    volumes:
+      - .:/opt/app
+      - /opt/app/node_modules
     ports:
       - 3001:3000
     depends_on:
