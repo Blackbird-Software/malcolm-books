@@ -14,7 +14,7 @@ import {ActorsService} from './actors.service';
 import {CreateActorDto} from './dto/create-actor.dto';
 import {ActorInterface} from './actor.interface';
 import {UpdateActorDto} from './dto/update-actor.dto';
-import {GenderValidationPipe} from '../common/pipes/gender-validation.pipe';
+import {GenderValidationPipe} from '../common/pipe/gender-validation.pipe';
 import {Gender} from '../common/gender.enum';
 
 @ApiTags('actors')

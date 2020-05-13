@@ -5,8 +5,8 @@ import {plainToClass} from 'class-transformer';
 import {RegisterUserDto} from './dto/register-user.dto';
 import {LoginDto} from '../auth/dto/login.dto';
 import {UserInterface} from './user.interface';
-import {PasswordHasher} from './hashers/password-hasher';
-import {PasswordHasherInterface} from './hashers/password-hasher.interface';
+import {PasswordHasher} from './hasher/password-hasher';
+import {PasswordHasherInterface} from './hasher/password-hasher.interface';
 import {NullUser} from './null-user';
 
 @EntityRepository(User)
