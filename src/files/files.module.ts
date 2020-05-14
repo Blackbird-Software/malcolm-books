@@ -6,6 +6,7 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import {FileRepository} from './file.repository';
 import {FilesService} from './files.service';
 import {File} from './file.entity';
+import {LogsModule} from "../logs/logs.module";
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import {File} from './file.entity';
         MulterModule.register({
             dest: File.DEFAULT_UPLOAD_PATH,
         }),
+        LogsModule,
     ],
     controllers: [FilesController],
     providers: [FilesService],

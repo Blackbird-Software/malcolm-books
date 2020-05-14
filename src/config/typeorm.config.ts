@@ -22,7 +22,7 @@ const ormConfig: ConnectionOptions = {
         migrationsDir: 'src/migrations',
     },
     extra: {
-        debug: true,
+        debug: false,
     },
 };
 

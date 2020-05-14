@@ -4,21 +4,30 @@ import {CreateActorDto} from './dto/create-actor.dto';
 import {ActorRepository} from './actor.repository';
 import {ActorInterface} from './actor.interface';
 import {UpdateActorDto} from './dto/update-actor.dto';
+import {LogsService} from "../logs/logs.service";
+import {ActionType} from "../logs/enum/action-types";
 
 @Injectable()
 export class ActorsService {
 
     constructor(
-        @InjectRepository(ActorRepository)
-        private readonly directorRepository: ActorRepository,
-    ) {}
+        @InjectRepository(ActorRepository) private readonly directorRepository: ActorRepository,
+        private readonly logsService: LogsService
+    ) {
+    }
 
     async create(dto: CreateActorDto): Promise<ActorInterface> {
-        return this.directorRepository.createActor(dto);
+        const actor = await this.directorRepository.createActor(dto);
+        await this.logsService.sendMessage(actor, ActionType.CREATE);
+
+        return actor;
     }
 
     async update(id: string, dto: UpdateActorDto): Promise<ActorInterface> {
-        return this.directorRepository.updateActor(id, dto);
+        const actor = await this.directorRepository.updateActor(id, dto);
+        await this.logsService.sendMessage(actor, ActionType.UPDATE);
+
+        return actor;
     }
 
     async findAll(): Promise<ActorInterface[]> {
@@ -36,11 +45,13 @@ export class ActorsService {
     }
 
     async delete(id: string): Promise<void> {
+        const actor = await this.directorRepository.findOne(id);
         const result = await this.directorRepository.delete(id);
 
         if (result.affected === 0) {
             throw new NotFoundException(`Actor with uuid "${id}" not found. `);
         }
-    }
 
+        await this.logsService.sendMessage(actor, ActionType.DELETE);
+    }
 }

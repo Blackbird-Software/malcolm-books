@@ -6,5 +6,15 @@ db:
   port: 3306
   database: 'movies'
 
+queue:
+  user: user
+  password: pass1
+  hostname: logs_rabbitmq
+  port: 5672
+
 jwt:
   expiresIn: 3600
+
+service:
+  id: 2
+  name: MOVIES

@@ -1,14 +1,25 @@
-version: '3.3'
+version: '3.5'
+
+networks:
+  malcolm_network:
+    external: true
 
 services:
-  web:
-    image: r3m4k3/movies-web:latest
+  movies_web:
+    container_name: movies_web
+    build: .
     restart: always
+    volumes:
+      - .:/opt/app
+      - /opt/app/node_modules
     ports:
-      - 3001:3000
+      - 3006:3000
     depends_on:
-      - db
-  db:
+      - movies_db
+    networks:
+      - malcolm_network
+  movies_db:
+    container_name: movies_db
     image: mysql:5.7
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
@@ -23,6 +34,8 @@ services:
       - 3306
     volumes:
       - db-data:/var/lib/mysql
+    networks:
+      - malcolm_network
 
 volumes:
   db-data:

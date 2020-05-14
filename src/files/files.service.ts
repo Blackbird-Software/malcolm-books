@@ -3,17 +3,22 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {FileRepository} from './file.repository';
 import {FileInterface} from './file.interface';
 import * as fs from 'fs';
+import {LogsService} from "../logs/logs.service";
+import {ActionType} from "../logs/enum/action-types";
 
 @Injectable()
 export class FilesService {
     constructor(
-        @InjectRepository(FileRepository)
-        private fileRepository: FileRepository,
+        @InjectRepository(FileRepository) private fileRepository: FileRepository,
+        private readonly logsService: LogsService
     ) {
     }
 
     async create(file: any): Promise<FileInterface> {
-        return this.fileRepository.createFile(file);
+        const savedFile = await this.fileRepository.createFile(file);
+        await this.logsService.sendMessage(savedFile, ActionType.CREATE);
+
+        return savedFile;
     }
 
     async findAll(): Promise<FileInterface[]> {
@@ -36,6 +41,7 @@ export class FilesService {
 
         try {
             fs.unlinkSync(file.path);
+            await this.logsService.sendMessage(file, ActionType.DELETE);
         } catch (e) {
             throw new InternalServerErrorException(`File with uuid "${id}" could not be deleted. `);
         }

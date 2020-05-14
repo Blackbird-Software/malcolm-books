@@ -14,6 +14,7 @@ import {ActorsService} from '../actors/actors.service';
 import CountriesList from '../common/countries-list';
 import {FilesService} from '../files/files.service';
 import {FileRepository} from '../files/file.repository';
+import {LogsModule} from "../logs/logs.module";
 
 @Module({
     imports: [
@@ -24,6 +25,7 @@ import {FileRepository} from '../files/file.repository';
         TypeOrmModule.forFeature([FileRepository]),
         AuthModule,
         GenresModule,
+        LogsModule,
         DirectorRepository,
         ActorRepository,
         FileRepository,
