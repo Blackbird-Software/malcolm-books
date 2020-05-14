@@ -19,11 +19,15 @@ import {ActionType} from "../logs/enum/action-types";
 @Injectable()
 export class MoviesService {
 
+    private CLASSNAME = 'MOVIE';
+
     constructor(
         @InjectRepository(MovieRepository) private readonly movieRepository: MovieRepository,
         private readonly filesService: FilesService,
         private readonly logsService: LogsService
-    ) {}
+    ) {
+        this.logsService.setClassName(this.CLASSNAME);
+    }
 
     async create(dto: CreateMovieDto): Promise<MovieInterface> {
         const cover = await this.filesService.findById(dto.cover);

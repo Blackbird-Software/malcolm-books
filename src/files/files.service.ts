@@ -8,10 +8,14 @@ import {ActionType} from "../logs/enum/action-types";
 
 @Injectable()
 export class FilesService {
+
+    private CLASSNAME = 'FILE';
+
     constructor(
         @InjectRepository(FileRepository) private fileRepository: FileRepository,
         private readonly logsService: LogsService
     ) {
+        this.logsService.setClassName(this.CLASSNAME);
     }
 
     async create(file: any): Promise<FileInterface> {

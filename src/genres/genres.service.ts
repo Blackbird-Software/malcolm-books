@@ -9,10 +9,14 @@ import {ActionType} from "../logs/enum/action-types";
 
 @Injectable()
 export class GenresService {
+
+    private CLASSNAME = 'GENRE';
+
     constructor(
         @InjectRepository(GenreRepository) private genreRepository: GenreRepository,
         private readonly logsService: LogsService
     ) {
+        this.logsService.setClassName(this.CLASSNAME);
     }
 
     async create(dto: CreateGenreDto): Promise<GenreInterface> {

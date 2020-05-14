@@ -10,10 +10,13 @@ import {ActionType} from "../logs/enum/action-types";
 @Injectable()
 export class ActorsService {
 
+    private CLASSNAME = 'ACTOR';
+
     constructor(
         @InjectRepository(ActorRepository) private readonly directorRepository: ActorRepository,
-        private readonly logsService: LogsService
+        private logsService: LogsService
     ) {
+        this.logsService.setClassName(this.CLASSNAME);
     }
 
     async create(dto: CreateActorDto): Promise<ActorInterface> {
