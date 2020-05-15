@@ -60,7 +60,7 @@
   resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-0.0.4.tgz#a55d3e78905a019abb42c69763d04b976e6a8a92"
   integrity sha512-+LER9UCm/BHPRm0qk3Uv0KLywedru4cr211oaGYA7bIDrHlQZeeqGAfGhVXBiVgZ6w5JWJkBwzsPEFtt5Zw78Q==
 
-"@nestjs/microservices@^7.0.9":
+"@nestjs/microservices@^7.0.11":
   version "7.0.11"
   resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-7.0.11.tgz#715ece4b32318fa5f401d82cf1d1360a833a12b5"
   integrity sha512-n1KZc0GBhUM9P3s6UOrUA8T52f+ZDiBh8pnVsv7WcEQlca0EBoq5zkXYtha8ki6gVl4rX4DDuMqFmWzNyo80Uw==

@@ -1,5 +1,4 @@
 import {Module} from '@nestjs/common';
-import {AuthModule} from '../auth/auth.module';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {MovieRepository} from './movie.repository';
 import {MoviesController} from './movies.controller';
@@ -23,7 +22,6 @@ import {LogsModule} from "../logs/logs.module";
         TypeOrmModule.forFeature([DirectorRepository]),
         TypeOrmModule.forFeature([ActorRepository]),
         TypeOrmModule.forFeature([FileRepository]),
-        AuthModule,
         GenresModule,
         LogsModule,
         DirectorRepository,

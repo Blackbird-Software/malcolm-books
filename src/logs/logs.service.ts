@@ -1,8 +1,8 @@
 import {Inject, Injectable, OnModuleInit, Scope} from '@nestjs/common';
-import {ClientProxy} from '@nestjs/microservices';
 import config from 'config';
 import {ActionType} from "./enum/action-types";
 import {MessagePatternType} from "./enum/message-pattern-types";
+import {ClientProxy} from "@nestjs/microservices";
 const service = config.service;
 
 @Injectable({
