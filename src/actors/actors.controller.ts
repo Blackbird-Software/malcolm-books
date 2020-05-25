@@ -5,22 +5,20 @@ import {
     Logger,
     Param,
     ParseUUIDPipe,
-    Post, Put,
-    UseGuards,
+    Post, Put, UseGuards,
 } from '@nestjs/common';
-import {AuthGuard} from '@nestjs/passport';
-import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
+import {ApiTags} from '@nestjs/swagger';
 import {ActorsService} from './actors.service';
 import {CreateActorDto} from './dto/create-actor.dto';
 import {ActorInterface} from './actor.interface';
 import {UpdateActorDto} from './dto/update-actor.dto';
 import {GenderValidationPipe} from '../common/pipe/gender-validation.pipe';
 import {Gender} from '../common/gender.enum';
+import {JwtAuthGuard} from "../auth/jwt/jwt.guard";
 
+@UseGuards(JwtAuthGuard)
 @ApiTags('actors')
-@ApiBearerAuth()
 @Controller('actors')
-@UseGuards(AuthGuard())
 export class ActorsController {
 
     private readonly logger = new Logger('ActorsController');

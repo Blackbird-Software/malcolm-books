@@ -8,7 +8,6 @@ import {
     Post, Put, Query,
     UseGuards, UsePipes, ValidationPipe,
 } from '@nestjs/common';
-import {AuthGuard} from '@nestjs/passport';
 import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
 import {MoviesService} from './movies.service';
 import {MovieInterface} from './movie.interface';
@@ -33,11 +32,12 @@ import {CountryValidationPipe} from '../common/pipe/country-validation.pipe';
 import {FileValidationPipe} from '../files/pipe/file-validation.pipe';
 import {FileInterface} from '../files/file.interface';
 import CountryInterface from '../common/country.interface';
+import {JwtAuthGuard} from "../auth/jwt/jwt.guard";
 
-@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('movies')
 @Controller('movies')
-@UseGuards(AuthGuard())
+@ApiBearerAuth()
 export class MoviesController {
 
     private logger = new Logger('MoviesController');

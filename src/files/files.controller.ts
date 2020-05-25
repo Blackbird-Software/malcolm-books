@@ -5,12 +5,10 @@ import {
     Param, ParseUUIDPipe,
     Post,
     Res,
-    UploadedFile,
-    UseGuards,
+    UploadedFile, UseGuards,
     UseInterceptors,
 } from '@nestjs/common';
-import {AuthGuard} from '@nestjs/passport';
-import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
+import {ApiTags} from '@nestjs/swagger';
 import {FileInterceptor} from '@nestjs/platform-express';
 import {editFileName} from './helper/edit-filename';
 import {imageFileFilter} from './helper/image-file-filter';
@@ -18,11 +16,11 @@ import {diskStorage} from 'multer';
 import {FilesService} from './files.service';
 import {FileInterface} from './file.interface';
 import {File} from './file.entity';
+import {JwtAuthGuard} from "../auth/jwt/jwt.guard";
 
-@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('files')
 @Controller('files')
-@UseGuards(AuthGuard())
 export class FilesController {
 
     constructor(private readonly filesService: FilesService) {

@@ -36,6 +36,7 @@
     "@types/node": "^10.12.18",
     "amqp-connection-manager": "^3.2.0",
     "amqplib": "^0.5.6",
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.9.1",

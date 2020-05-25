@@ -7,6 +7,7 @@ networks:
 services:
   movies_web:
     container_name: movies_web
+    env_file: .env
     build: .
     restart: always
     volumes:

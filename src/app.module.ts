@@ -7,6 +7,7 @@ import {EnumsModule} from './enum/enums.module';
 import {FilesModule} from './files/files.module';
 import {HealthModule} from './health/health.module';
 import {DatabaseOrmModule} from "./database-orm.module";
+import {AuthModule} from "./auth/auth.module";
 
 @Module({
     imports: [
@@ -18,6 +19,7 @@ import {DatabaseOrmModule} from "./database-orm.module";
         FilesModule,
         EnumsModule,
         HealthModule,
+        AuthModule
     ],
 })
 export class AppModule {

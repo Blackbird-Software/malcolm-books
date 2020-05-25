@@ -5,20 +5,18 @@ import {
     Logger,
     Param,
     ParseUUIDPipe,
-    Post, Put,
-    UseGuards,
+    Post, Put, UseGuards,
 } from '@nestjs/common';
-import {AuthGuard} from '@nestjs/passport';
 import {CreateDirectorDto} from './dto/create-director.dto';
-import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
+import {ApiTags} from '@nestjs/swagger';
 import {DirectorsService} from './directors.service';
 import {UpdateDirectorDto} from './dto/update-director.dto';
 import {DirectorInterface} from './director.interface';
+import {JwtAuthGuard} from "../auth/jwt/jwt.guard";
 
-@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('directors')
 @Controller('directors')
-@UseGuards(AuthGuard())
 export class DirectorsController {
 
     private logger = new Logger('DirectorsController');

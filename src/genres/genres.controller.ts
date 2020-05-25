@@ -5,20 +5,19 @@ import {
     Logger,
     Param,
     ParseUUIDPipe,
-    Post, Put,
-    UseGuards,
+    Post, Put, UseGuards,
 } from '@nestjs/common';
-import {AuthGuard} from '@nestjs/passport';
 import {GenresService} from './genres.service';
 import {GenreInterface} from './genre.interface';
 import {CreateGenreDto} from './dto/create-genre.dto';
 import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
 import {UpdateGenreDto} from './dto/update-genre.dto';
+import {JwtAuthGuard} from "../auth/jwt/jwt.guard";
 
-@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('genres')
 @Controller('genres')
-@UseGuards(AuthGuard())
+@ApiBearerAuth()
 export class GenresController {
 
     private readonly logger = new Logger('GenresController');
